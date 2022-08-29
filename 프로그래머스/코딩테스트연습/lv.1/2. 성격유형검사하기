@@ -1,0 +1,69 @@
+function solution(survey, choices) {
+    let score_obj = {
+        'R': 0, 
+        'T': 0, 
+        'C': 0, 
+        'F': 0, 
+        'J': 0, 
+        'M': 0, 
+        'A': 0, 
+        'N': 0, 
+    }
+    for(let i=0;i<survey.length;i++){
+        let result = test(survey[i], choices[i]);
+        score_obj[result.str] += result.score;
+    }
+    // console.log(score_obj);
+
+    
+    var answer = '';
+    if(score_obj.R < score_obj.T){
+        answer += 'T';
+    } else {
+        answer += 'R';
+    }
+    if(score_obj.C < score_obj.F){
+        answer += 'F';
+    } else {
+        answer += 'C';
+    }
+    if(score_obj.J < score_obj.M){
+        answer += 'M';
+    } else {
+        answer += 'J';
+    }
+    if(score_obj.A < score_obj.N){
+        answer += 'N';
+    } else {
+        answer += 'A';
+    }
+    // console.log(answer)
+
+    return answer;
+}
+
+function test(survey_one, choice_one){
+    let selected_char = '';
+    let selected_score = 0
+    if(choice_one > 4){
+        selected_score = choice_one - 4;
+        selected_char = survey_one.charAt(1);
+    } else if(choice_one < 4){
+        selected_score = 4 - choice_one;
+        selected_char = survey_one.charAt(0);
+    } else {
+        selected_score = 0;
+        selected_char = getABC(survey_one);
+    }
+    return {'str': selected_char, 'score': selected_score};
+}
+
+function getABC(str){
+    return [...str].sort().join('').charAt(0);
+}
+
+
+
+// 한번에 성공! 
+// if 문이 많아져도 시간초과 나올 걱정은 접어두고 
+// 일단 생각난 방법으로 해결 먼저 해보는게 중요한 것 같다.
