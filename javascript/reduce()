@@ -1,0 +1,14 @@
+let oneTwoThree = [1, 2, 3];
+
+// Array 원소의 총합 구하기
+result = oneTwoThree.reduce((acc, cur, i)=>{
+  return acc + cur;
+})
+result; // 6
+
+// map, filter의 역할 가능
+result = oneTwoThree.reduce((acc, cur, i)=>{
+  acc.push(cur % 2 ? '홀수' : '짝수');
+  return acc;
+}, [])
+result; // ['홀수', '짝수', '홀수']
