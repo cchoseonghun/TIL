@@ -1,0 +1,21 @@
+acc
+accumulator
+누산기
+
+reduce 
+줄이다
+
+cur
+current
+현재의
+
+
+javascript 
+
+let oneTwoThree = [1, 2, 3];
+
+result = oneTwoThree.reduce((acc, cur, i)=>{
+  return acc + cur;
+})
+
+result; // 6
