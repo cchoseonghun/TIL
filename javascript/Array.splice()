@@ -1,0 +1,3 @@
+배열 특정 위치의 배열 요소 삭제
+
+Array.splice(index, 1);
