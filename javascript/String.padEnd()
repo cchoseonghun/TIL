@@ -1,0 +1,4 @@
+str.padEnd(targetLength: number [, padString: string])
+
+targetLength: 목표 문자열 길이. 현재 문자열의 길이보다 작다면 채워넣지 않고 그대로 반환.
+padString: 현재 문자열에 채워넣을 다른 문자열. default는 ''
