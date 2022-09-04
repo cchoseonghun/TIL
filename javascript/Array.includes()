@@ -1,0 +1,7 @@
+Array.includes(valueToFind [, from Index]) // return true or false
+
+ex)
+
+[1, 2].includes(1);  // true
+[1, 2].includes(1, 1);  // 1번째 인자부터는 1이 없으므로 false
+[1, 2].includes(1, -1);  // -1번째 인자부터 1이 포함되어 있으므로 true
