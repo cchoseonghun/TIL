@@ -1,0 +1,83 @@
+최근 풀었던 문제중 제일 어떻게 풀어야 할까 고민을 많이 하고 풀은 문제인듯
+풀이를 크게 세부분으로 나눴다. 
+
+1. 항상 왼손(1, 4, 7)과 항상 오른손(3, 6, 9)을 쓰는 경우 먼저 처리
+2. 1번에 해당하지 않는 가운데(2, 5, 8, 0)가 목표일 경우 
+  각각의 출발하는 왼손, 오른손이 몇칸 움직여야 하는지를 구하는 함수 만들기
+3. 가운뎃줄 목표일 때 위 2번 이용해서 문제 풀이
+
+먼저 변수 세팅
+숫자패드 *, 0, #의 경우 10, 11, 12로 변경하여 사용하였다. 
+
+numbers에 대해 forEach() 문으로 돌며 제일 먼저 1번의 경우를 해결
+
+출발 숫자패드에서 목표 숫자패드까지 몇 칸 만에 갈 수 있는지 getDistance() 함수를 만들었고
+목표가 가운뎃줄일 때 
+(목표 - 현재위치)를 3으로 나눈 값의 몫과 나머지를 더하면 칸을 움직여야 하는 횟수가 나오는걸 발견
+절대값을 구하는 함수 Math.abs()와 
+값의 몫만 구하는용으로 parseInt()를 사용했다.
+% 연산자로 나머지를 구하는건 알고 있었음
+
+주석처리된 콘솔출력하는 부분을 통해 문제 예시와 비교해보며 생각한 방법이 맞나 
+
+let numbers 
+//  = [1, 3, 4, 5, 8, 2, 1, 4, 5, 9, 5];
+//  = [7, 0, 8, 2, 8, 3, 1, 5, 7, 6, 2];
+ = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+
+let hand 
+// = "right";
+// = "left";
+= "right";
+
+function solution(numbers, hand){
+    var answer = '';
+
+    let cur_left = 10;
+    let cur_right = 12;
+
+    let arr_left = [1, 4, 7];
+    let arr_right = [3, 6, 9];
+
+    numbers.forEach((a)=>{
+        // let str = cur_left + '      ' + cur_right + '      ' + a + '      ';
+
+        if(arr_left.includes(a)){
+            answer += 'L';
+            cur_left = a;
+        } else if(arr_right.includes(a)){
+            answer += 'R';
+            cur_right = a;
+        } else {
+            if(a == 0) a = 11;
+            let distance_left = getDistance(a, cur_left);
+            let distance_right = getDistance(a, cur_right);
+
+            if( distance_left < distance_right ){
+                answer += 'L';
+                cur_left = a;
+            } else if( distance_left > distance_right ){
+                answer += 'R';
+                cur_right = a;
+            } else {
+                if(hand == 'left'){
+                    answer += 'L';
+                    cur_left = a;
+                } else if(hand == 'right'){
+                    answer += 'R';
+                    cur_right = a;
+                }
+            }
+        }
+        // str += answer.slice(answer.length-1);
+        // console.log(str);
+    })
+    
+    function getDistance(target, cur){
+        return parseInt(Math.abs(target - cur)/3) + Math.abs(target - cur)%3;
+    }
+
+    return answer;
+}
+
+// console.log(solution(numbers, hand));
