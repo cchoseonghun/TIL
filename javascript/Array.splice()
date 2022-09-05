@@ -1,3 +1,11 @@
-배열 특정 위치의 배열 요소 삭제
+배열 특정 위치의 배열 요소 삭제, 또는 추가
 
-Array.splice(index, 1);
+array.splice(start[, deleteCount[, item1[, item2[, ...]]]])
+
+ex)
+let arr = [1, 2, 3, 4];
+arr.splice(1, 2);  // [1, 4]
+
+let arr = [1, 2, 3, 4];
+arr.splice(1, 0, 'a');  // [1, 'a', 2, 3, 4]
+
