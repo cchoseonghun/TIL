@@ -1,0 +1,15 @@
+Array.map()을 이용했을 때 return 하면 결과를 배열로 뱉어주는 것을 이용했음
+
+let array = [1, 5, 2, 6, 3, 7, 4];
+
+let commands = [[2, 5, 3], [4, 4, 1], [1, 7, 3]];
+
+function solution(array, commands){
+    var answer = commands.map((command)=>{
+        let temp = array.slice(command[0]-1, command[1]).sort((a,b)=>a-b);
+        return temp[command[2]-1];
+    })
+    return answer;
+}
+
+console.log(solution(array, commands));
