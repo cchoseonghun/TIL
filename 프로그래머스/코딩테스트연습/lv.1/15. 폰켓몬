@@ -1,0 +1,26 @@
+필요한 결과값은 최대로 많이 가져갈 수 있는 폰켓몬 종류 수 이기 때문에
+
+간단하게 정렬 및 중복 제거 후 
+폰켓몬 종류 >= 가져갈 수 있는 폰켓몬 수 // 가져갈 수 있는 폰켓몬 수가 정답
+폰켓몬 종류 < 가져갈 수 있는 폰켓몬 수 // 폰켓몬 종류가 정답
+
+
+let nums
+// = [3,1,2,3];
+// = [3,3,3,2,2,4];
+= [3,3,3,2,2,2];
+
+function solution(nums){
+    let howMany = nums.length/2;
+
+    nums = new Set(nums);
+    nums = [...nums].sort((a,b)=>a-b);
+    
+    if(nums.length < howMany){
+        return nums.length;
+    } else {
+        return howMany;
+    }
+}
+
+console.log(solution(nums));
