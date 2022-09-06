@@ -1,0 +1,58 @@
+크게 2개의 과정으로 나눠서 해결했음
+1. 주어진 nums 배열에서 서로 다른 3개를 더한 값들 구하기
+2. 1에서 구한 값들 중 소수가 되는 경우 파악하기
+
+서로 다른 요소는 각각 하나의 for문이 됐고
+요소가 서로 중복되지 않는점과 sort()로 정렬한 뒤에 for문을 돌 때 
+for문을 감싼 for문에서 정의한 x는 그 안의 for문의 변수 y보다 항상 작다는 점을 이용해 
+continue를 통해 중복되는 경우를 회피함
+
+소수는 말 그대로 1과 자기 자신만 약수로 갖는 수이기 때문에
+1부터 자신까지 +1 해가며 나눴을 때 나머지가 0이 되는 수의 개수를 구해서 1과 자기자신 즉 2개일 경우만 구해서 answer에 +1
+
+
+
+let nums
+= [1, 2, 3, 4];
+// = [1, 2, 7, 6, 4];
+
+function solution(nums){
+    var answer = 0;
+    let temp = [];
+    nums = nums.sort();
+
+    // 1. 서로 다른 3개를 더한 값들을 구하기
+    for(let x=0;x<nums.length;x++){
+        for(let y=0;y<nums.length;y++){
+            if(x>=y){
+                continue;
+            }
+            for(let z=0;z<nums.length;z++){
+                if(y>=z){
+                    continue;
+                }
+                if(x !== y && x !== z && y !== z){
+                    // console.log(nums[x], nums[y], nums[z], nums[x] + nums[y] + nums[z]);
+                    temp.push(nums[x] + nums[y] + nums[z]);
+                }
+            }
+        }
+    }
+    temp = temp.sort((a,b)=>a-b);
+    // console.log(temp)
+
+    // 2. 1에서 구한 값들중 소수가 되는 경우 파악하기
+    temp.forEach((a)=>{
+        let temp2 = [];
+        for(let x=1;x<=a;x++){
+            if(a%x==0){
+                temp2.push(x);
+            }
+        }
+        if(temp2.length == 2) answer += 1;
+    })
+
+    return answer;
+}
+
+console.log(solution(nums));
