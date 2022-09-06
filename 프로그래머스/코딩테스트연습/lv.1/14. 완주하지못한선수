@@ -1,0 +1,56 @@
+처음 풀이는 participant, completion 두 배열을 정렬한 후 
+completion을 forEach()로 돌며 나온 값 a가
+participant를 for문으로 돌았을 때 나온 결과값과 같으면 해당 위치의 participant 값을 splice해서
+결국 마지막에 남게된 participant[0]을 리턴하도록 했는데
+예시문제 3개는 풀었지만 정확성 테스트 2번의 실패와 효율성 테스트는 모조리 틀림
+아래는 해당 풀이
+
+participant = participant.sort();
+completion = completion.sort();
+
+completion.forEach((a)=>{
+    for(let x=0;x<participant.length;x++){
+        if(a == participant[x]){
+            participant.splice(x, 1);
+        }
+    }
+})
+// console.log(participant)
+return participant[0];
+
+
+forEach()문 안에 for문이 또 들어가지 않는 방법을 찾아보았다.
+
+
+그냥 처음부터 두 배열 정렬 후 
+for문을 돌며 x값에 해당하는 각각의 값을 비교해서 같지 않은 값이 나오면 
+participant[x]를 리턴시켰다. 결과는 성공
+
+
+
+let participant
+= ["leo", "kiki", "eden"];
+// = ["marina", "josipa", "nikola", "vinko", "filipa"];
+// = ["mislav", "stanko", "mislav", "ana"];
+
+let completion
+= ["eden", "kiki"];
+// = ["josipa", "filipa", "marina", "nikola"];
+// = ["stanko", "ana", "mislav"];
+
+function solution(participant, completion){
+    participant = participant.sort();
+    completion = completion.sort();
+
+    // console.log(participant);
+    // console.log(completion);
+
+    for(let x=0;x<participant.length;x++){
+        if(participant[x] != completion[x]){
+            // console.log(participant[x]);
+            return participant[x];
+        }
+    }
+}
+
+console.log(solution(participant, completion));
