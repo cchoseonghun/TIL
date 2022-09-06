@@ -1,0 +1,6 @@
+Math.sqrt(x)
+주어진 숫자에 루트를 씌운다. 음수는 NaN을 리턴
+
+Math.pow(power, exponent)
+power에 exponent를 제곱한 값을 리턴한다. 
+ex) Math.pow(2, 3) // 2의 3제곱 = 8
