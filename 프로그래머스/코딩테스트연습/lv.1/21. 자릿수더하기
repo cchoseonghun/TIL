@@ -1,0 +1,11 @@
+function solution(n)
+{
+    let answer = 0;
+
+    let n_str = n.toString();
+    [...n_str].forEach((a)=>{
+        answer += parseInt(a);
+    })
+
+    return answer;
+}
