@@ -12,3 +12,9 @@ result = oneTwoThree.reduce((acc, cur, i)=>{
   return acc;
 }, [])
 result; // ['홀수', '짝수', '홀수']
+
+
+
+
+Array.reduceRight()
+위 reduce()와 똑같지만 Array의 뒤에서부터 앞으로 이동하며 진행된다. 
