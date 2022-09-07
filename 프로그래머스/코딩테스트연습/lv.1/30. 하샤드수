@@ -1,0 +1,15 @@
+let x = 10;
+
+function solution(x){
+    let sum = 0;
+    [...x.toString()].forEach((a)=>{
+        sum +=  parseInt(a);
+    })
+    if(x%sum == 0){
+        return true;
+    } else {
+        return false;
+    }
+}
+
+console.log(solution(x));
