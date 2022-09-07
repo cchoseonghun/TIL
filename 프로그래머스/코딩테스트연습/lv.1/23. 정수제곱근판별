@@ -1,0 +1,23 @@
+// Math.sqrt(n)     // n의 제곱근
+// Math.pow(a, b)   // a의 b제곱
+
+let n = 121;
+
+function solution(n){
+    let answer = 0;
+    
+    let n_sqrt = Math.sqrt(n);
+
+    // 첫 풀이에서 3, 6, 13번 정확성 테스트를 실패한 케이스를 토대로 소숫점이 있을시 제곱한 값의 길이가 너무 길어지는 경우를 고려해 아래 코드 추가작성 후 통과함
+    if(n_sqrt % 1 != 0) return -1;  // 정수가 아니고 실수일 경우 바로 리턴 
+    
+    if(Math.pow(n_sqrt, 2) == n){
+        answer = Math.pow(n_sqrt+1, 2);
+    } else {
+        answer = -1;
+    }
+
+    return answer;
+}
+
+console.log(solution(n));
