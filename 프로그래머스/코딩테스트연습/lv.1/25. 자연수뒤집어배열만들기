@@ -1,0 +1,17 @@
+처음엔 reduceRight() 써서 해야되나? 싶었는데
+그냥 주어진 자연수 n을 String으로 만들고 각각의 글자에 대한 배열로 만든 후 
+for문으로 맨뒤에서부터 맨앞 인덱스까지 꺼내 결과 Array에 넣은 후 리턴시키면 됐다.
+
+let n = 12345;
+
+function solution(n){
+    let answer = [];
+
+    let n_arr = [...n.toString()];
+    for(let x=n_arr.length-1;x>=0;x--){
+        answer.push(parseInt(n_arr[x]));
+    }
+    return answer;
+}
+
+console.log(solution(n));
