@@ -1,0 +1,15 @@
+중간에 console.log()가 들어갈 경우 테스트 결과 속도에 영향을 줄 수 있다는 것을 생각
+
+function solution(arr1, arr2) {
+    let answer = [];
+
+    for(let x=0;x<arr1.length;x++){
+        let temp = [];
+        for(let y=0;y<arr1[0].length;y++){
+            temp.push(arr1[x][y] + arr2[x][y]);
+        }
+        answer.push(temp);
+    }
+
+    return answer;
+}
