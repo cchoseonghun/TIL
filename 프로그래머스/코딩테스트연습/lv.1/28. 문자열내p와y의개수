@@ -1,0 +1,35 @@
+1. 대소문자 구분이 없기에 toLowerCase()를 통해 모두 소문자로 변환
+2. 정규식을 통해 p,y를 제외한 글자 제거
+3. 처음부터 끝까지 돌면서 p인지 y인지 체크해서 숫자를 세는거보다 
+정렬한 뒤 딱 중간을 잘랐을 때 중간 글자가 서로 다르면 true 리턴하는게 효율이 좋다고 생각함
+4. 'p', 'y'가 하나도 없는 경우에 true 리턴하는 경우 체크
+5. 문자열 정렬
+6. 문자열 길이가 홀수일 경우 false 리턴
+7. 홀수가 아닐 경우 중간 두 글자가 같으면 false, 다르면 true 리턴
+
+let s 
+// = 'pPoooyY';
+= 'Pyy';
+// = 'pPfePWEFIWyYIwpewfyyyy';
+
+function solution(s){
+    s = s.toLowerCase()
+    .replace(/[^p|y]/g, '');
+
+    if(s.length == 0) return true;
+    
+    s = [...s].sort().join('');
+
+    if(s.length % 2 != 0){
+        return false;
+    } else {
+        let l = s.length/2;
+        if(s.slice(l-1, l) == s.slice(l, l+1)){
+            return false;
+        } else {
+            return true;
+        }
+    }
+}
+
+console.log(solution(s));
