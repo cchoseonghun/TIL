@@ -1,0 +1,63 @@
+1차로 문제를 풀었는데 정확성 테스트에서 잔뜩 틀림.
+첫번째로 발견한 문제는 파라미터로 주는 lost와 reserve가 정렬되지 않은 상태에서 올 수 있다는 부분인걸 파악하고
+정렬한 후 실행했더니 오답률이 줄어들긴함.
+2, 3, 5, 6, 10번 테스트만 해결하면 될듯
+
+밑은 해당 코드
+먼저 체육복을 도둑맞았지만 여벌을 가져와서 양쪽 목록에서 제외되면 되는 인원을 없앴다.
+그 후 도둑맞은 인원에 대해 for문을 돌며 reserve for문으로 차이값의 절대값이 1이하인 인원을 제외
+결과로 남은 lost의 수만큼 n에서 뺀 값을 return했다.
+이 과정에서 for문을 돌며 splice 한다는 점을 고려해 복사본을 = [...Array]를 이용했음
+
+let n
+// = 5;
+// = 3;
+= 3;
+
+let lost 
+// = [2, 4];
+// = [3];
+// = [1, 2, 3];
+= [];
+
+let reserve
+// = [1, 3, 5];
+// = [1];
+// = [1, 2, 3];
+= [];
+
+function solution(n, lost, reserve){
+    var answer = 0;
+
+    lost = lost.sort((a,b)=>a-b);
+    reserve = reserve.sort((a,b)=>a-b);
+
+    // 여벌을 가져왔지만 자기꺼 도둑맞은 학생은 두 배열에서 제외
+    // for문 중간에 splice로 인해 오류가 생기지 않게 temp라는 reserve의 복사본 생성
+    let temp = [...reserve];
+    for(let x=0;x<reserve.length;x++){
+        let i = lost.indexOf(reserve[x]);
+        if(i != -1){
+            lost.splice(i, 1);
+            temp.splice(x, 1);
+        }
+    }
+    reserve = temp;
+    
+    let temp2 = [...lost];
+    a:for(let x=0;x<lost.length;x++){
+        for(let y=0;y<reserve.length;y++){
+            // console.log('x: ' + x + ', lost[x]: ' + lost[x] + ', y: ' + y + ', reserve[y]: ' + reserve[y]);
+            if(Math.abs(lost[x] - reserve[y]) <= 1){
+                temp2.splice(temp2.indexOf(lost[x]), 1);
+                reserve.splice(y, 1);
+                continue a;
+            }
+        }
+    }
+    answer = n - temp2.length;
+    return answer;
+}
+
+console.log(solution(n, lost, reserve));
+// solution(n, lost, reserve);
