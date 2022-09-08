@@ -1,0 +1,28 @@
+그냥 단순 문제에서 주어진 작업 그대로 풀어내면 끝
+
+let n = 1;
+
+function solution(num){
+    let answer = -1;
+
+    let checker = 0;
+    if(num == 1){
+        answer = 0;
+    } else {
+        while(checker < 500){
+            if(num == 1){
+                answer = checker;
+                checker = 500;
+            } else if(num%2==0){
+                num = num/2;
+            } else {
+                num = num*3+1;
+            }
+            checker++;
+        }
+    }
+
+    return answer;
+}
+
+console.log(solution(num));
