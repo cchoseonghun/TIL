@@ -1,0 +1,13 @@
+let s 
+// = '-1234';
+= '1234';
+
+function solution(s){
+    if(s.slice(0,1) == '-'){
+        return parseInt(s.slice(1, s.length)) * -1;
+    } else {
+        return parseInt(s);
+    }
+}
+
+console.log(solution(s));
