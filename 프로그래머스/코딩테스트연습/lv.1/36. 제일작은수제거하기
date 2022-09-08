@@ -1,0 +1,57 @@
+처음에는 간단히 sort()후 나온 제일 앞의 수의 index를 구해서 
+기존 sort() 전 Array에서 해당 요소를 빼버리는 방법으로 진행했다.
+근데 입출력 예제는 통과했지만 정확성 테스트에서 죄다 오답으로 기록되는걸 보고 
+정렬하는 방법을 버리고 reduce()로 제일 작은 숫자를 찾아서 처리했음
+아래는 수정 전 코드와 수정 후 코드
+
+// before
+
+let arr 
+// = [4, 3, 2, 1];
+= [10];
+
+function solution(arr) {
+    let answer = [];
+
+    if(arr.length == 1) {
+        answer.push(-1);
+    } else {
+        answer = [...arr];
+        answer.splice(answer.indexOf(arr.sort((a,b)=>a-b).slice(0,1)), 1);
+    }
+    
+    return answer;
+}
+
+console.log(solution(arr));
+
+
+------------
+
+// after
+
+let arr 
+= [4, 3, 2, 1];
+// = [10];
+
+function solution(arr) {
+    let answer = [];
+
+    if(arr.length == 1) {
+        answer.push(-1);
+    } else {
+        let small = arr.reduce((acc, cur, i)=>{
+            if(acc < cur){
+                return acc;
+            } else {
+                return cur;
+            }
+        })
+        arr.splice(arr.indexOf(small), 1);
+        answer = arr;
+    }
+    
+    return answer;
+}
+
+console.log(solution(arr));
