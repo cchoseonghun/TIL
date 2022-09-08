@@ -1,0 +1,14 @@
+function solution(a, b) {
+    var answer = 0;
+    
+    if(a>b){
+        let temp = b;
+        b = a;
+        a = temp;
+    }
+    for(let x=a;x<=b;x++){
+        answer += x;
+    }
+    
+    return answer;
+}
