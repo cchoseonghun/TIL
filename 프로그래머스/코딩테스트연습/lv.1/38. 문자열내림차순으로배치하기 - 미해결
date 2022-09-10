@@ -1,0 +1,6 @@
+1차로 올림
+예제는 풀리는데 나머지가 다 안풀린다. 
+
+function solution(s) {
+    return [...s].reverse().join('');
+}
