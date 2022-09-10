@@ -1,0 +1,26 @@
+let s 
+= 'a234';
+// = '1234';
+
+function solution(s){
+    let answer = true;
+
+// 정규표현식 방법 -> 5, 6, 28, 29번 = 4문제 실패
+    // if((/[a-zA-Z]/g).test(s)){
+    //     answer = false;
+    // } else {
+    //     answer = true;
+    // }
+    
+// Number.isNaN() 방법 -> 12문제 실패
+    if(Number.isNaN(parseInt(s))) {
+        answer = false;
+    }
+
+    return answer;
+}
+
+console.log(solution(s));
+// solution(s);
+
+
