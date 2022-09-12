@@ -1,0 +1,19 @@
+function solution(left, right) {
+    let answer = 0;
+
+    for(let x=left;x<=right;x++){
+        let temp = 0;
+        for(let y=1;y<=x;y++){
+            if(x%y==0){
+                temp++;
+            }
+        }
+        if(temp%2==0){
+            answer += x;
+        } else {
+            answer -= x;
+        }
+    }
+
+    return answer;
+}
