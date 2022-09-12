@@ -1,0 +1,15 @@
+문제에 
+문자열 s의 길이가 4 혹은 6이고,
+라고 되어있는 부분을 대수롭지 않게 넘겨서 해당 부분에 대한 4개의 테스트를 통과하지 못했었음
+if문으로 간단하게 넘겨서 패스했지만 저 부분까지 정규식에 포함시키면 좋을듯?
+
+if(!(s.length == 4 | s.length == 6)){
+    return false;
+}
+for(let x=0;x<s.length;x++){
+    if(/[^0-9]/.test(parseInt(s[x]))){
+        // console.log(x, parseInt(s[x]))
+        answer = false;
+        break;
+    }
+}
