@@ -1,0 +1,23 @@
+let price = 3;
+let money = 20;
+let count = 4;
+let result = 10;
+
+function solution(price, money, count){
+    let answer = -1;
+
+    let sum = 0;
+    for(let x=1;x<=count;x++){
+        sum += price * x;
+    }
+    // 금액이 부족하지 않을 경우
+    if(sum <= money){
+        answer = 0;
+    } else {
+        answer = sum - money;
+    }
+
+    return answer;
+}
+
+console.log(solution(price, money, count))
