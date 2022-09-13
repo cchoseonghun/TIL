@@ -1,0 +1,48 @@
+최대공약수 구하는 함수, 최소공배수 구하는 함수 두개를 만들어 사용하기로 함.
+
+최대공약수는 둘중 큰수가 작은수의 배수면 작은수가 최대공약수가 되고
+아니라면 작은수에서 -1 해가며 n과 m을 나눴을 때 나머지가 0이 나오는 수를 구하면 된다.
+
+최소공배수는 둘중 큰수가 작은수의 배수면 큰수가 최소공배수,
+아니라면 큰수 * x로 x를 +1 해가며 작은수로 나눴을 때 0이 되는 수를 구하면 된다.
+
+
+let n = 2;
+let m = 5;
+
+function solution(n, m){
+    if(n < m){
+        return [getGreatest(n, m), getLeast(n, m)];
+    } else {
+        return [getGreatest(m, n), getLeast(m, n)];
+    }
+
+    // 항상 a가 작은 수가 되게 입력
+    function getGreatest(a, b){
+        if(b%a==0){
+            return a;
+        } else {
+            for(let x=a-1;x>0;x--){
+                if(a%x==0 && b%x==0){
+                    return x;
+                }
+            }
+        }
+    }
+    function getLeast(a, b){
+        if(b%a==0){
+            return b;
+        } else {
+            let num = 1;
+            while(true){
+                let least = b*num;
+                if((least)%a==0){
+                    return least;
+                }
+                num++;
+            }
+        }
+    }
+}
+
+console.log(solution(n, m));
