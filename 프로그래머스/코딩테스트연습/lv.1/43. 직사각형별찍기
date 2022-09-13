@@ -1,0 +1,20 @@
+생긴거에 비해서 걍 쉬운 문제. 중간에 a, b에 대해 console.log 찍는 부분을 주석처리 해줘야하는거 잊지말기
+process.stdin 관련해서는 처음 보는 부분이었는데 
+javascript쪽에 저장해놨다가 다시 공부할 예정
+
+process.stdin.setEncoding('utf8');
+process.stdin.on('data', data => {
+    const n = data.split(" ");
+    const a = Number(n[0]), b = Number(n[1]);
+    // console.log(a);
+    // console.log(b);
+    let row = '';
+    let column = '';
+    for(let x=0;x<a;x++){
+        row += '*';
+    }
+    for(let y=0;y<b;y++){
+        column += (row + '\n');
+    }
+    console.log(column);
+});
