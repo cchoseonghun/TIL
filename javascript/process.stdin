@@ -1,0 +1,14 @@
+process.stdin.setEncoding('utf8');
+process.stdin.on('data', data => {
+  const n = data.split(" ");
+  const a = Number(n[0]);
+  const b = Number(n[1]);
+  
+  console.log(a);
+  console.log(b);
+});
+
+// 실행 후 5 3 입력시
+// 5
+// 3
+// 이렇게 출력됨
