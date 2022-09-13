@@ -1,0 +1,35 @@
+기준이 되는 알파벳에 대해 하나의 변수로 만들어 나열해놓고 생각해서 풀었음.
+암호화라고 해봤자 기준이 되는 키값이 있을텐데 이게 지금은 알파벳일뿐임
+
+let s 
+// = 'AB';
+// = 'z'
+= 'a B z';
+
+let n 
+// = 1;
+= 4;
+
+function solution(s, n){
+    let answer = '';
+
+    let abc = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+    for(let x=0;x<s.length;x++){
+        if(s[x] != ' '){
+            let i = abc.indexOf(s[x]);
+            // console.log('i: ' + i + ', ' + abc[i]);
+            if((i+n > 25 && i <= 25) || (i > 25 && i+n > abc.length-1)){
+                answer += abc[i+n-26];
+            } else {
+                answer += abc[i+n];
+            }
+        } else {
+            answer += ' ';
+        }
+    }
+
+    return answer;
+}
+
+console.log(solution(s, n));
