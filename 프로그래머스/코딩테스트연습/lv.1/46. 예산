@@ -1,0 +1,41 @@
+최대한 많은 부서의 물품을 구매해주려면 그냥 오름차순으로 정렬한 후에 
+앞에서부터 더해서 budget을 넘기전까지가 최대한으로 구매해줄 수 있는 예산 범위이다.
+
+정렬 후 for문으로 돌며 더하고있다가 budget을 넘는 순간 break를 걸면
+해당위치의 i값이 i는 0부터 시작이기 때문에 통과된 부서의 개수가 된다.
+
+예산이 모든 부서의 물품을 사줄만큼 넉넉하다면 for문을 break없이 패스하게 될거이므로
+checker라는 변수를 두어 break에 안걸리는걸 체크해서 d.length(모든부서의수)를 리턴시키면 해결
+
+
+let d 
+// = [1,3,2,5,4,10];
+= [2,2,3,3];
+// = [1, 10, 1];
+
+let budget 
+// = 9;
+= 10;
+
+function solution(d, budget){
+    let answer = 0;
+
+    d = d.sort((a,b)=>a-b);
+    // console.log('d: ' + d);
+    let sum = 0;
+    let checker = false;
+    for(let x=0;x<d.length;x++){
+        sum += d[x];
+        answer = x;
+        if(sum > budget){
+            // console.log('x: ' + x);
+            checker = true;
+            break;
+        }
+    }
+    if(!checker) answer = d.length;
+
+    return answer;
+}
+
+console.log(solution(d, budget));
