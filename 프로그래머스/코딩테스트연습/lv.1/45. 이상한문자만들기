@@ -1,0 +1,65 @@
+공백이 한칸이라면 쉽게 풀 수 있었겠지만 여러칸일 경우가 생겨 헤매게됐다.
+공백이 한칸이라고 생각한 처음 풀이
+
+let s = "try    hello world";
+
+function solution(s){
+    s = s.replace(/\s+/g, ' ');
+
+    let answer = s.split(' ').map((a)=>{
+        let temp = '';
+        for(let x=0;x<a.length;x++){
+            if(x%2==0){
+                temp += a[x].toUpperCase();
+            } else {
+                temp += a[x];
+            }
+        }
+        return temp;
+    })
+
+    return answer.join(' ');
+}
+
+console.log(solution(s));
+
+
+----------------------------------
+
+단어별로 Array 만들고 복사본 만들고 이런거 다 집어치우고 그냥
+주어진 s를 첫글자부터 돌면서 글자면 짝수인지 카운터 세서 대문자 변환시키고
+아니면 그냥 붙여넣고
+' '(공백)이 나오면 카운터 초기화 시키면서 공백 아닐때까지 그냥 붙여넣고
+이런식으로 해서 풀음. 
+
+이 문제가 어려울 수 있는 이유는 아래 두가지를 생각 안해서임
+1. 공백은 한칸이상일 수 있다. ex) try    hello world => TrY    HeLlO WoRlD
+2. 애초에 s로 대문자가 올 수 있다. 홀수인 애들은 소문자로 변환시켜야함
+
+풀이해답은 아래
+
+let s 
+= "try    hello world";
+// = 'abc abcd abcde';
+// = 'LLHLLL lHlL';
+
+function solution(s){
+    let answer = '';
+    let checker = 0;
+    for(let x=0;x<s.length;x++){
+        if(s[x] != ' '){
+            if(checker%2 == 0){
+                answer += s[x].toUpperCase();
+            } else {
+                answer += s[x].toLowerCase();
+            }
+            checker += 1;
+        } else {
+            answer += ' ';
+            checker = 0;
+        }
+    }
+    return answer;
+}
+
+console.log(solution(s));
