@@ -1,0 +1,83 @@
+찾아보면 3진법 변환 관련 함수를 써서 쉽게 가능할거 같은데 
+모르니까 무식하게 직접 함수를 만들어 풀었다.
+
+1. 주어진 수 n을 3진법으로 나타내기
+2. 1번에서 구한 값을 앞뒤로 뒤집기
+3. 10진법으로 변환하기
+
+1. 먼저 3진법으로 만드는 방법은 
+주어진 수를 3으로 나눴을 때 나오는 나머지를 왼쪽 방향으로 적어내는 방법을 사용했다.
+
+결과값 변수에 n을 3으로 나눠서 나온 나머지 적고 -> 
+결과값 변수 타이핑 위치를 왼쪽으로 움직였다 치고 -> let str = 나머지 + str; // 과 같은 꼴
+(n-위에서 나온 나머지)가 0이 아닐 때 // 만약 0이면 break를 걸고 지금까지 만든 str을 리턴
+(n-위에서 나온 나머지) 나누기 3의 몫이 n이 됨 
+(다시 위로 돌아가 반복)
+
+글로 설명하면 이런 느낌
+
+2. 뒤집는건 그냥 for문 사용함
+
+3. 10진법 변환은 
+각각의 n의 자릿수가 n-1자릿수가 되면서 x3씩 해주는 방법으로 1의 자리까지 내려온 후
+1의 자리까지 내려온 각각의 값을 모두 더한 값이 변환된 10진법 값이 된다.
+ex) '120'일 때 
+1은 100의 자릿수 -> 10의 자릿수 -> 1의 자릿수가 되야하므로 1 x3 x3 = 9
+2는 10의 자릿수 -> 1의 자릿수가 되야하므로 2 x3 = 6
+(0도 같은 방법이지만 혹시 모를 성능 저하를 생각해 바로 continue로 넘겼다.)
+고로 9+6+0 = 15가 된다.
+
+let n 
+// = 45;
+= 125;
+
+function solution(n){
+    let answer = 0;
+
+    let n_third = tenToThree(n);
+    let n_reverse = '';
+    for(let x=n_third.length-1;x>=0;x--){
+        n_reverse += n_third[x];
+    }
+    return threeToTen(n_reverse);
+
+    function threeToTen(str){
+        let str_arr = [...str];
+        let result = 0;
+
+        for(let x=0;x<str_arr.length;x++){
+            if(str_arr[x] == '0') continue;
+            let temp = parseInt(str_arr[x]);
+            for(let y=1;y<str_arr.length-x;y++){
+                temp = temp * 3;
+            }
+            result += temp;
+        }
+        return result;
+    }
+
+    function tenToThree(n){
+        let third = '';
+        let remainder = 0;
+        let temp = 0;
+
+        while(true){
+            remainder = n % 3;
+            third = remainder + third;
+            temp = n - remainder;
+            if(temp == 0) {
+                return third;
+            }
+            n =  temp / 3;
+        }
+    }
+
+    return answer;
+}
+
+console.log(solution(n));
+
+
+---------------------------------------
+
+3진법 함수를 쓴다면?
