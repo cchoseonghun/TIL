@@ -1,0 +1,60 @@
+이전 문제가 3진법 관련 문제였기 때문에 응용해서 쉽게 풀 수 있었다.
+
+1. 10진법 -> 2진법으로 변환하는 함수 만들기. 
+  이 과정에서 n만큼 채워져 있어야하니 padStart()를 써서 빈 앞부분을 0으로 채웠음
+2. arr1, arr2를 map()을 통해 1번에서 만든 함수 돌려 리턴받기
+3. for문으로 n만큼 돌며 각각의 인덱스에 해당하는 요소를 
+  parseInt()를 통해 변환해서 서로 합치고 
+  이 과정에서 String이 아니게 되므로 
+  합친걸 다시 toString()으로 바꿔줌과 동시에 앞부분 padStart()로 채우기
+  어느 하나라도 벽인 부분은 벽, 모두 공백인 부분은 공백이므로 
+  0끼리 합치면 공백, 합쳐서 1이든 2이든 벽이므로 다 1로 만들어주면 된다. replcae()와 정규표현식 사용
+  나온 결과물에 대해 다시 replace()로 '1'은 '#', '0'은 ' '공백으로 만들어주면 원하는 결과 완성
+  
+  
+let n 
+// = 5;
+= 6;
+let arr1 
+// = [9, 20, 28, 18, 11];
+= [46, 33, 33 ,22, 31, 50];
+let arr2
+// = [30, 1, 21, 17, 28];
+= [27 ,56, 19, 14, 14, 10];
+
+function solution(n, arr1, arr2){
+    let answer = [];
+
+    arr1 = arr1.map((a)=>tenToTwo(a))
+    arr2 = arr2.map((a)=>tenToTwo(a))
+
+    for(let x=0;x<n;x++){
+        let sum = parseInt(arr1[x]) + parseInt(arr2[x]);
+        sum = sum.toString().padStart(n, '0').replace(/[2]/g, '1');
+        sum = sum.replace(/[1]/g, '#').replace(/[0]/g, ' ');
+        answer.push(sum);
+    }
+
+    function tenToTwo(target){
+        let result = '';
+        let temp = 0;
+        let remainder = 0;
+        while(true){
+            remainder = target % 2;
+            result = remainder + result;
+            temp = target-remainder;
+            if(temp == 0){
+                if(result.length != n){
+                    result = result.padStart(n, '0');
+                }
+                return result;
+            } else {
+                target = temp / 2;
+            }
+        }
+    }
+
+    return answer;
+}
+
+console.log(solution(n, arr1, arr2));
