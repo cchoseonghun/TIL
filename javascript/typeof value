@@ -1,0 +1,7 @@
+let str = '123';
+let num = 123;
+
+typeof str  // string
+typeof num  // number
+
+typeof 에서 of가 소문자여야되는거 확인
