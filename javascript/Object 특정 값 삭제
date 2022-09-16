@@ -1,0 +1,8 @@
+let obj = {'1': 2};
+console.log(obj);  // {1: 2}
+
+delete obj['2'];
+console.log(obj);  // {1: 2}
+
+delete obj['1'];
+console.log(obj);  // {}
