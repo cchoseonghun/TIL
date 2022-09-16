@@ -1,0 +1,39 @@
+프로그래머스 lv.1 스킬체크 문제에서 처음 접하고나서 
+시간문제로 각 스테이지 별 실패율을 구할 때 분모가 0이어서 NaN이 나오는 경우를 생각 못하고 제출해서
+만점을 받지 못한 문제로, 다시 문제를 풀면서 보니 
+N=4, stages=[4,4,4,4,4]일 경우와 반대로
+N=4, stages=[1,1,1,1,1]일 경우를 생각해 유추해냈다.
+
+그전에는 너무 Array 위주의 문제가 많았는데
+Array와 Object를 쓰고 삼항연산자, filter(), sort(), map() 등 
+여러 함수를 한 문제에서 이렇게 유용하게 썼다보니 재밌게 풀었던거 같다.
+
+
+function solution(N, stages) {
+    var answer = [];
+    
+    let fail_arr = [];
+    let fail_obj = {};
+    
+    for(let x=1;x<=N;x++){
+        let c = stages.filter((e)=>e==x).length;
+        let m = stages.filter((e)=>e>=x).length;
+        // 분모가 0이어서 NaN이 되는 케이스 예방 추가
+        let failure = m == 0 ? 0 : c / m;
+        // console.log(c, m, failure);
+        fail_arr.push(failure);
+        fail_obj[x] = failure;
+    }
+    // console.log(fail_arr);
+    // console.log(fail_obj);
+    fail_arr.sort((a,b)=>b-a);
+    
+    answer = fail_arr.map((e)=>{
+        let stage = Object.keys(fail_obj).find((key)=>fail_obj[key]==e)
+        delete fail_obj[stage];
+        return parseInt(stage);
+    })
+    
+    // console.log(answer)
+    return answer;
+}
