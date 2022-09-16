@@ -1,0 +1,56 @@
+코딩테스트 연습중 진법 변환 관련 문제가 나올 때 
+javascript에서 기본적으로 제공하는 함수로 쉽게 구할 수 있는걸 알고 있었지만
+실제 코딩테스트라 생각하고 내가 모르는게 나왔을 때 어떻게 돌파할 수 있나 궁금해서 직접 함수를 만들어 문제를 풀었었다.
+어려운길로 문제를 풀어봤으니 이제 쉬운길이 뭐가 있었나 알아보자
+
+원하는 진법으로의 변환과 10진법으로 되돌리는건 모두 많이 써본 함수를 이용해 가능하다.
+toString()과 parseInt()
+
+3진법으로의 변환을 예로 들겠다.
+
+let n = 45; 
+라는 10진법 함수가 있을 때 
+
+n.toString(3)  // 3진법 변환. 1200
+n.toString(2)  // 2진법 변환. 101101
+
+10진법으로 바꾸는건
+
+parseInt('1200', 3)    // 45
+parseInt('101101', 2)  // 45
+
+
+앞으로 몇진법의 문제가 와도 걱정이 없을 것 같다. 
+
+아래는 어려운 방법을 택했을 때 사용했던 코드
+
+function threeToTen(str){
+        let str_arr = [...str];
+        let result = 0;
+
+        for(let x=0;x<str_arr.length;x++){
+            if(str_arr[x] == '0') continue;
+            let temp = parseInt(str_arr[x]);
+            for(let y=1;y<str_arr.length-x;y++){
+                temp = temp * 3;
+            }
+            result += temp;
+        }
+        return result;
+    }
+
+    function tenToThree(n){
+        let third = '';
+        let remainder = 0;
+        let temp = 0;
+
+        while(true){
+            remainder = n % 3;
+            third = remainder + third;
+            temp = n - remainder;
+            if(temp == 0) {
+                return third;
+            }
+            n =  temp / 3;
+        }
+    }
