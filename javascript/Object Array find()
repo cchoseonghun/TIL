@@ -1,0 +1,17 @@
+let month_obj = [
+        {'name': 1, 'days': 31}, 
+        {'name': 2, 'days': 29}, 
+        {'name': 3, 'days': 31}, 
+        {'name': 4, 'days': 30}, 
+        {'name': 5, 'days': 31}, 
+        {'name': 6, 'days': 30}, 
+        {'name': 7, 'days': 31}, 
+        {'name': 8, 'days': 31}, 
+        {'name': 9, 'days': 30}, 
+        {'name': 10, 'days': 31}, 
+        {'name': 11, 'days': 30}, 
+        {'name': 12, 'days': 31}, 
+    ]
+
+// 2월달의 날짜 위에서 뽑기
+let day = month_obj.find( e => e.name == 2 ).days;
