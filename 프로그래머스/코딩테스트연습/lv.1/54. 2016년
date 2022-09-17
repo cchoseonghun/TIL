@@ -1,0 +1,43 @@
+윤년이면 2월이 29일까지 있는 해였다. 기준점이 되는 1월1일이 금요일인걸 알려줬으니 
+일수에 해당하는 수 % 7 했을 때 나오는 0 ~ 6 은 목요일부터 금,토,일,월,화,수 가 된다. 
+각 달에 대한 일수는 따로 계산법을 모르니 그냥 Object로 만들어서 저장하고 열람하는 방식을 선택
+
+제시된 a가 1월이 아니면 1월까지 끌어내려야 %7 해서 무슨 요일인지 계산하는데
+한달씩 끌어내릴때마다 그 전달의 일수를 b에 더하는 방식으로 while문을 써서 해결했다.
+
+
+function solution(a, b) {
+    var answer = '';
+    
+    // 윤년이면 2월이 29일까지 있는 해?
+    let yoil = ['THU', 'FRI', 'SAT', 'SUN', 'MON', 'TUE', 'WED'];
+    let month_obj = [
+        {'name': 1, 'days': 31}, 
+        {'name': 2, 'days': 29}, 
+        {'name': 3, 'days': 31}, 
+        {'name': 4, 'days': 30}, 
+        {'name': 5, 'days': 31}, 
+        {'name': 6, 'days': 30}, 
+        {'name': 7, 'days': 31}, 
+        {'name': 8, 'days': 31}, 
+        {'name': 9, 'days': 30}, 
+        {'name': 10, 'days': 31}, 
+        {'name': 11, 'days': 30}, 
+        {'name': 12, 'days': 31}, 
+    ]
+    
+    // a달이 1월이 아닐 때 1월까지 끌어내리면서 그 과정에서 b에 그 전달에 해당하는 일수를 더하는 방법으로
+    // 한달씩 밑으로 내린다.
+    let i = 0;
+    if(a != 1){
+        while(a != 1){
+            let day = month_obj.find(e => e.name == a-1).days;
+            b = b + day;
+            a -= 1;
+        }
+    }
+    i = b % 7;
+    answer = yoil[i];
+    
+    return answer;
+}
