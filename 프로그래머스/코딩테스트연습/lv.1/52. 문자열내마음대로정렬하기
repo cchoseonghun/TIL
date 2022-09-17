@@ -1,0 +1,32 @@
+처음에는 sort가 문자열의 유니코드 순으로 정렬된다니 인덱스 n의 문자의 유니코드를 구해야 하나 했는데
+그냥 sort()의 콜백함수 안에서 
+if문으로 해당 문자둘을 비교해서 리턴값을 내리면 해결되는 문제였다.
+다만,
+인덱스 1의 문자가 같은 문자열이 여럿 일 경우, 사전순으로 앞선 문자열이 앞쪽에 위치합니다.
+의 경우를 고려해야 했기에 로직 시작 전 깡 sort() 한번 해줌으로 미리 사전순으로 앞선 문자열이 앞쪽에 오게 위치시켰다.
+며칠전에 잠깐 봤을때에 비해 비교적 쉽게 풀어냈음
+
+
+let strings 
+// = ["sun", "bed", "car"];
+= ["abce", "abcd", "cdx"];
+let n 
+// = 1;
+= 2;
+
+function solution(strings, n){
+    strings.sort();
+    strings.sort((a, b)=>{
+        // console.log(a[n], b[n]);
+        if(a[n]<b[n]){
+            return -1;
+        } else if(a[n]>b[n]) {
+            return 1;
+        } else {
+            return 0;
+        }
+    })
+    return strings;
+}
+
+console.log(solution(strings, n));
