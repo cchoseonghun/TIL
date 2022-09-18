@@ -1,3 +1,54 @@
+네번째 풀이만에 정답을 받았다.
+풀이에 대한 설명은 문제 풀며 남긴 주석을 대체
+
+function solution(n, lost, reserve) {
+    // 1. 두 배열 정렬
+    lost = lost.sort((a,b)=>a-b);
+    reserve = reserve.sort((a,b)=>a-b);
+
+    // 2. 도난당했지만 여벌이 있는 경우 체크를 위해
+    // (lost, reserve 두 배열에서 중복된 학생의 번호를 없애야함)
+    // 2-1. 중복된 번호 찾아 temp 배열에 담기
+    let temp = [];
+    lost.forEach((e)=>{
+        if(reserve.indexOf(e) > -1){
+            temp.push(e);
+        }
+    })
+    // console.log('temp: ' + temp);
+
+    // 2-2. temp 배열을 돌아 lost, reserve 배열에서 해당 값에 대한 index 탐색 후 제거
+    temp.forEach((e)=>{
+        lost.splice(lost.indexOf(e), 1);
+        reserve.splice(reserve.indexOf(e), 1);
+    })
+    // console.log('lost: ' + lost);
+    // console.log('reserve: ' + reserve);
+
+    // 3. 체육복은 건낸 학생은 reserve에서 제거 및 continue로 lost에서 패스
+    // 체육복을 못받은 학생은 lost_2 배열에 저장
+    let lost_2 = [];
+    a:for(let y=0;y<lost.length;y++){
+        for(let x=0;x<reserve.length;x++){
+            if(Math.abs(lost[y] - reserve[x]) <= 1){
+                reserve.splice(x, 1);
+                continue a;
+            }
+        }
+        lost_2.push(lost[y]);
+    }
+    // console.log(lost_2);
+
+    // lost_2에 남은 학생은 수업을 듣지 못하므로 (전체 학생 수 - 못듣는 학생 수 )
+    return n - lost_2.length;
+}
+
+
+
+---
+아래는 
+
+
 1차로 문제를 풀었는데 정확성 테스트에서 잔뜩 틀림.
 첫번째로 발견한 문제는 파라미터로 주는 lost와 reserve가 정렬되지 않은 상태에서 올 수 있다는 부분인걸 파악하고
 정렬한 후 실행했더니 오답률이 줄어들긴함.
@@ -106,59 +157,3 @@ console.log(solution(n, lost, reserve))
 lost = lost.sort((a,b)=>a-b);
 reserve = reserve.sort((a,b)=>a-b);
 추가한거임
-
-
----
-네번째 풀이 - 해결
-
-let n 
-= 8;
-
-let lost 
-// = [2, 4];
-// = [3];
-// = [2, 4, 7];
-= [5, 6, 7, 8, 9];
-
-let reserve 
-// = [1, 3, 5];
-// = [3];
-// = [1];
-// = [1, 3, 5];
-= [4, 5, 8, 9];
-
-function solution(n, lost, reserve){
-    lost = lost.sort((a,b)=>a-b);
-    reserve = reserve.sort((a,b)=>a-b);
-
-    let temp = [];
-    lost.forEach((e)=>{
-        if(reserve.indexOf(e) > -1){
-            temp.push(e);
-        }
-    })
-    // console.log('temp: ' + temp);
-
-    temp.forEach((e)=>{
-        lost.splice(lost.indexOf(e), 1);
-        reserve.splice(reserve.indexOf(e), 1);
-    })
-    // console.log('lost: ' + lost);
-    // console.log('reserve: ' + reserve);
-
-    let lost_2 = [];
-    a:for(let y=0;y<lost.length;y++){
-        for(let x=0;x<reserve.length;x++){
-            if(Math.abs(lost[y] - reserve[x]) <= 1){
-                reserve.splice(x, 1);
-                continue a;
-            }
-        }
-        lost_2.push(lost[y]);
-    }
-    // console.log(lost_2);
-
-    return n - lost_2.length;
-}
-
-console.log(solution(n, lost, reserve))
