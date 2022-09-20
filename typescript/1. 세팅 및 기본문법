@@ -45,9 +45,12 @@ let 이름 :string | number = 'kim';
 이름 = 123;
 또는 이란 뜻의 | 를 넣어서 사용도 가능
 
+
 타입을 만들어서 사용도 가능. 이 경우 대문자로
 type Name = string | number;
 let 이름 :Name = 123;
+이건 union type 이라고 함
+
 
 함수에도 사용 가능
 function 함수(x :number) :number{  // 리턴값 타입은 이렇게 표시
