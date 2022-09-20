@@ -1,0 +1,65 @@
+node.js 최신버전 설치
+
+npm install -g typescript
+
+~.ts 확장자 파일이 타입스크립트 파일
+
+tsconfig.json 파일 생성 후
+
+{
+    "compilerOptions": {
+        "target": "ES5",
+        "module": "CommonJS", 
+        // "noImplicitAny": true, // any라는 타입이 의도치않게 발생할 경우 에러 띄워줌
+        // "strictNullChecks": true  // null, undefined 타입에 이상한 조작하면 에러 띄어줌
+    }
+}
+
+입력 저장
+
+터미널에서 tsc -w 입력해두면 js 파일 자동 생성
+
+let 이름 :string = 'kim';
+
+와 같은 형태로 쓸 수 있음
+string 대신
+number
+boolean
+null
+undefined
+bigint
+[]
+{}
+등등 도 가능
+
+Array는
+let 이름 :string[] = ['kim', 'park'];
+
+Object
+let 이름 :{name? : string} 
+// = {name : 'kim'};
+= {}
+타입 뒤 ? 를 넣어서 값이 안들어갈 수 있도록 옵션으로 넣기도 가능
+
+let 이름 :string | number = 'kim';
+이름 = 123;
+또는 이란 뜻의 | 를 넣어서 사용도 가능
+
+타입을 만들어서 사용도 가능. 이 경우 대문자로
+type Name = string | number;
+let 이름 :Name = 123;
+
+함수에도 사용 가능
+function 함수(x :number) :number{  // 리턴값 타입은 이렇게 표시
+    return x * 2;
+}
+
+Array에 쓸 수 있는 tuple 타입
+type Member = [number, boolean];  // 무조건 첫째는 number, 둘째는 boolean
+let john:Member = [123, true]; 
+
+
+type Member = {
+    [key :string] :string,  // 글자로 된 모든 Object 속성의 타입은 :string
+}
+let john :Member = { name : 'kim' };
