@@ -1,0 +1,44 @@
+HTML 조작시 narrowing 하는 방법 5개
+
+1. if문
+let 제목 = document.querySelector('#title');
+if(제목 != null){
+    제목.innerHTML = '반가워요'
+}
+
+2. instanceof 연산자 (가장 많이 쓰게 됨)
+if(제목 instanceof Element){
+    제목.innerHTML = '반가워요'
+}
+
+3. as로 사기치기
+let 제목 = document.querySelector('#title') as Element;
+
+4. 오브젝트에 붙이는 ?. (optional chaining)
+if(제목?.innerHTML){
+    제목?.innerHTML = '반가워요'
+}
+4-1. 제목에 innerHTML이 있으면 출력해주고
+4-2. 없으면 undefined 뱉으셈
+
+5. 귀찮은 strict 모드 끄기 (tsconfig.json에서 설정한 strictNullChecks 옵션)
+
+
+
+let 링크 = document.querySelector('.link');
+// if(링크 instanceof Element){  // <a>에 필요한 정확한 타입명이 있음
+if(링크 instanceof HTMLAnchorElement){
+    링크.href = 'https://kakao.com';
+}
+
+let 버튼 = document.querySelector('#button');
+버튼?.addEventListener('click', function(){
+    // ?. => 버튼에 addEventListener 가능하면 해주시고 
+    // 아니면 undefined 뱉으셈
+    
+})
+
+let 이미지 = document.querySelector('#image');
+if(이미지 instanceof HTMLImageElement){
+    이미지.src = 'new.jpg';
+}
