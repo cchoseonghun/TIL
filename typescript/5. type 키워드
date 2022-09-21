@@ -1,0 +1,28 @@
+// type alias = 타입 변수. 변수 이름은 대문자로 시작
+type Animal = { name : string, age : number };
+let 동물 :Animal = { name : 'kim', age : 20 };
+
+
+type GirlFriend = {
+    readonly name : string
+}
+const 여친 :GirlFriend = {
+    name : '엠버'
+} 
+여친.name = '유라';  // 에러
+
+위와같이 type에 readonly를 이용해서 Object 자료 수정도 막을 수 있다.
+대신 타입스크립트 에러는 에디터 & 터미널에서만 존재
+
+
+
+// type 변수끼리 union type으로 합치기 가능
+type Name = string;
+type Age = number;
+type Person = Name | Age;
+
+type PositionX = { x : number };
+type PositionY = { y : number };
+type NewType = PositionX & PositionY;
+
+(참고) 같은 이름의 type 변수 재정의 불가능
