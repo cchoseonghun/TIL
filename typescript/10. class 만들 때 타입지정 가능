@@ -1,0 +1,62 @@
+class Person {
+    data = 0;  // class 필드값 (constructor와 똑같은 역할)
+}
+let 사람1 = new Person();
+console.log(사람1.data);
+
+
+class Person {  // TypeScript constructor()는
+    name :string;  // 필드값에 어쩌구가 미리 있어야 this.어쩌구 가능
+    constructor(a :string){  // 복제되는게 항상 Object인데 return 타입지정할 이유는 없음
+        this.name = a;
+    }
+    // prototype 함수는 여기에 만듦
+    함수(a :string) :void{
+        console.log('안녕' + a);
+    }
+}
+// rest parameter, default parameter 등 가능
+let 사람1 = new Person('kim');
+let 사람2 = new Person('park');
+console.log(사람1);
+console.log(사람2);
+console.log(사람1.함수('안녕'));
+
+
+class Car {
+    model :string;
+    price :number; 
+    constructor(model :string, price :number){
+        this.model = model;
+        this.price = price;
+    }
+    tax() :number{
+        return this.price / 10;
+    }
+}
+let car1 = new Car('소나타', 3000);
+console.log(car1);
+console.log(car1.tax());
+
+
+class Word {
+    num;
+    str;
+    constructor(...param){
+        let 숫자들 :number[] = [];
+        let 문자들 :string[] = [];
+
+        param.forEach((e)=>{
+            if(typeof e == 'number'){
+                숫자들.push(e);
+            } else {
+                문자들.push(e);
+            }
+        })
+        this.num = 숫자들;
+        this.str = 문자들;
+    }
+}
+let obj = new Word('kim', 3, 5, 'park');
+console.log(obj.num);
+console.log(obj.str);
