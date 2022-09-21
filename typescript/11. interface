@@ -1,0 +1,85 @@
+type 키워드로 타입변수 생성가능
+interface 키워드로 타입변수 생성가능
+
+// Object 타입지정시 interface 사용가능
+// class 만드는 법이랑 유사함
+interface Square { 
+    color :string, 
+    width :number 
+};
+let 네모 :Square = { color : 'red', width : 100 }
+
+
+interface Student {
+    name :string;
+}
+// interface Teacher {
+    // name :string, 
+interface Teacher extends Student {
+    age :number
+}
+let 학생 :Student = { name : 'kim' };
+let 선생 :Teacher = { name : 'kim', age : 20 }
+// interface 장점 : extends로 복사 가능
+
+
+// type alias 에서는? 
+type Animal = { name :string }
+type Cat = { age :number } & Animal  // & 기호 (intersection type)
+let 선생2 :Cat = { name : 'kim', age : 20 }
+
+interface도 & 기호로 합치기 가능
+
+interface는 중복선언 가능 (합쳐짐)
+type은 중복선언 불가능
+다른 사람들이 이용 많이할 것 같으면 Object 타입 정할 때 interface 쓰셈
+
+interface는 중복속성 오류남
+& 쓸 때 중복속성 발생하면 미리 에러 안나니 주의
+&는 합치는게 아니라 왼쪽 오른쪽 둘 다 만족하는 타입임
+
+
+예제)
+interface Product {
+    brand :string, 
+    serialNumber :number, 
+    model :string[]
+}
+let 상품 :Product = { 
+    brand : 'Samsung', 
+    serialNumber : 1360, 
+    model : ['TV', 'phone'] 
+}
+
+interface Cart {
+    product :string, 
+    price :number
+}
+interface Cart2 extends Cart {
+    card :boolean
+}
+let 장바구니 :Cart[] = [ 
+    { 
+        product : '청소기', 
+        price : 7000 
+    }, 
+    { 
+        product : '삼다수', 
+        price : 800 
+    } 
+] 
+
+interface test {
+    plus :(a :number, b :number) => number, 
+    minus :(a :number, b :number) => number, 
+}
+let obj :test = {
+    plus(a, b){
+        return a + b;
+    }, 
+    minus(a, b){
+        return a - b;
+    }
+}
+console.log(obj.plus(1, 2));
+console.log(obj.minus(1, 2));
