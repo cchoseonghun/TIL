@@ -1,0 +1,51 @@
+function 함수(x :number) :number {
+    return x * 2;
+}
+함수(30);
+
+
+// void => 실수로 뭔가 return 하는걸 막아줌
+function 함수2(x: number) :void {
+    1 + 1;
+}
+함수2(3);
+
+
+// 파라미터가 옵션일 경우엔 파라미터변수?:타입
+function 함수3(x?: number) :void {
+//function 함수3(x :number|undefined) :void {
+}
+함수3();
+// 변수?:number 는 변수:number|undefined 와 같음
+
+
+예제문제)
+function test(name? :string) :void {
+    if(name){
+        console.log('안녕하세요 ' + name)
+    } else {
+        console.log('이름이 없습니다.')
+    }
+}
+// test('홍길동');
+
+function test2(value :string|number) :number {
+    return value.toString().length;
+}
+// console.log(test2('245'));
+console.log(test2(9567));
+
+function 결혼가능하냐(월소득 :number, 집보유여부 :boolean, 매력점수 :string) :string|void {
+    let score :number = 월소득;
+    if(집보유여부){
+        score += 500;
+    }
+    if(매력점수 == '상'){
+        score += 100;
+    }
+    if(score >= 600){
+        return '결혼가능'
+    }
+}
+// console.log(결혼가능하냐(700, false, '중'));
+console.log(결혼가능하냐(100, false, '상'));
