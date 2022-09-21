@@ -1,0 +1,49 @@
+let 회원정보 = {
+    name : 'kim', 
+    age : 30, 
+    plusOne(x){
+        return x+1;
+    }, 
+    changeName : () => {
+        console.log('안녕');
+    }
+}
+회원정보.plusOne(1);
+회원정보.changeName();
+
+// plusOne이라는 속성은 함수여야하고, 숫자를 넣어서 숫자를 뱉는 함수여야함
+// changeName이라는 속성은 함수여야하고, 아무것도 return하면 안됨
+
+type Member = {
+    name :string, 
+    age :number, 
+    plusOne :(x :number) => number,
+    changeName :() => void
+}
+
+
+
+테스트예제)
+type CutZeroType = (str :string) => string
+let cutZero :CutZeroType = (str) => {
+    if(str.slice(0, 1) == '0'){
+        return str.slice(1, str.length);
+    } else {
+        return str;
+    }
+}
+// console.log(cutZero('0zz'));
+
+type RemoveDashType = (str :string) => number
+let removeDash :RemoveDashType = (str) => {
+    str = str.replace(/-/g, '');
+    return parseInt(str);
+}
+// console.log(removeDash('3432-34-32-12'));
+
+let 만들함수 = (str :string, fn1 :CutZeroType, fn2 :RemoveDashType) => {
+    let result1 = fn1(str);
+    let result2 = fn2(result1);
+    console.log(result2);
+}
+만들함수('010-1111-2222', cutZero, removeDash);
