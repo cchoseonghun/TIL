@@ -1,0 +1,25 @@
+// 옛날 방식
+function 기계(a){
+    this.q = a;
+    this.w = 'snowball';
+}
+// this => 기계로부터 생성되는 object
+
+var nunu = new 기계('consume');
+
+// ES6 방식
+// class Hero {
+//     constructor(a, b){
+//         this.q = a;
+//         this.w = b;
+//     }
+// }
+
+// prototype (유전자라고 생각)
+// 위에서 function 안에서 this.q ~ 이렇게 쓰면
+// 자식이 {q:'strike'} 직접 가짐
+기계.prototype.name = 'kim';
+// 여기다가 쓰면 부모만 {name:'kim'} 가짐
+// nunu가 name 가지고 있으면 출력
+// nunu가 name 가지고 있지 않으면 => nunu 부모 유전자 검색해서 name있으면 출력
+// 없으면 부모의부모 .. 반복 (prototype chain)
