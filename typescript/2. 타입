@@ -1,0 +1,42 @@
+union 타입
+let 회원들 :(number | string)[] = [1, '2', 3];
+let 오브젝트 :{a : (string | number)} = {a : 123};
+
+
+any 타입
+let 이름 :any;  // 모든 타입 허용. 하지만 타입스크립트 쓰는 의미가 없어짐
+이름 = 123;  // any 타입 => 타입실드 해제문법
+이름 = [];
+
+let 언노운 :unknown;  // 모든 자료형 허용해줌
+언노운 = 123;
+언노운 = [];
+
+// unknown타입이 any보다 안전한 이유는
+let 변수1 :string = 이름;
+// let 변수2 :string = 언노운;  // 에러
+
+
+let 나이 :(string|number);
+나이 + 1;  // 왜 안되는지? => 
+// 타입 엄격하기 때문에 
+// string 타입 + 1 (허용)
+// number 타입 + 1 (허용)
+// string|number 타입 + 1 (안됌)  새로운 타입임
+
+
+
+예제문제)
+let 학교 
+:{
+    score :(number|boolean)[], 
+    teacher :string, 
+    friend :string[]|string
+}
+= {
+    score: [100, 97, 84], 
+    teacher: 'Phil', 
+    friend: 'John'
+}
+학교.score[4] = false;
+학교.friend = ['Lee', 학교.teacher];
