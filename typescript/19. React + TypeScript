@@ -1,0 +1,79 @@
+npx create-react-app 프로젝트명 --template typescript
+
+기존 리액트 프로젝트에 타입스크립트 더하고 싶으면
+npm install --save typescript @types/node @types/react @types/react-dom @types/jest
+하지만 이 방법은 추천하지 않음. 웬만해선 새로 프로젝트 만드는게 안전
+
+JSX 문법을 쓰는 파일은 .tsx 파일이 됨
+
+1. 일반변수, 함수 만들 때 타입지정 잘하기
+2. JSX 표현하는 타입 있음
+3. component 만들 때 타입지정
+- 함수 타입지정은 파라미터 & return 값
+
+
+function App() {
+  return (
+    <div>
+      <h4>안녕</h4>
+      <Profile></Profile>
+    </div>
+  );
+}
+
+function Profile() :JSX.Element{  // 밑에 <div>태그는 HTML처럼 보이지만 JSX임
+  return (
+    <div>프로필입니다</div>
+  )
+}
+
+
+4. component props 타입지정
+
+<Profile name="철수" age="20"></Profile>
+function Profile(props :{name :string, age :string}) :JSX.Element{  // props = {name : '철수'}
+
+
+맨날 props 잘못 전달해서 에러가 많은데 이 방법 이용하면 좋겠지?
+
+
+5. useState 타입지정 (알아서 해줌)
+  let [user, setUser] = useState('kim');  // string type
+// string 또는 number가 오게 하고 싶으면?
+  let [user, setUser] = useState<string | number>('kim');
+
+
+
+
+React에서 Redux 쓰는 이유
+1. 모든 컴포넌트가 state 공유 가능
+2. 수정방법을 파일 한 곳에 정의해둠 (버그추적이 쉽다)
+
+npm install redux react-redux
+
+
+// index.tsx
+export type RootState = ReturnType<typeof store.getState>
+
+// App.tsx
+import {RootState} from './index'
+const 꺼내온거 = useSelector( (state :RootState) => state );
+
+import {Dispatch} from 'redux'
+const dispatch :Dispatch = useDispatch();
+
+
+@reduxjs/toolkit 라이브러리
+- state, reducer를 object로 정리한다는게 다름
+- state + reducer 합친걸 slice라고 부름
+이 문법의 좋은 점
+1. 함수라 보기좋음
+2. state 수정시 사본 만들 필요 없음
+
+타입지정은 당연히 변수/함수 만들 때
+
+import {PayloadAction} from '@reduxjs/toolkit'
+
+함수(state, action :PayloadAction<number>){ // dispatch() 할 때 number 넣을거임 이란 뜻
+
+
