@@ -1,0 +1,31 @@
+v-for로 도는 반복문에서 index인 i로
+<h4 @click="modalOn(i)">{{ 원룸.title }}</h4>
+
+data(){
+  return {
+    menu: ['Home', 'Shop', 'Etc'], 
+    원룸들: data, 
+    modal: false, 
+    modal_num: 0, 
+  }
+}, 
+methods: {
+  modalOn(i){
+    this.modal = true;
+    this.modal_num = i
+  }
+},
+
+modal_num을 state에 세팅해서 modalOn() 함수를 통해 index값을 넘기고 modal이 보이게 스위치 true로
+
+상세페이지에선 변경된 modal_num 값 만으로 데이터를 찾아 보여줄 수 있다.
+
+<div class="bg-black" v-if="modal">
+  <div class="bg-white">
+    <h4>{{원룸들[modal_num].title}}</h4>
+    <img class="img" :src="원룸들[modal_num].image" :alt="원룸들[modal_num].title">
+    <p>{{원룸들[modal_num].content}}</p>
+    <p>{{원룸들[modal_num].price}}원</p>
+    <button @click="modal=false">닫기</button>
+  </div>
+</div>
