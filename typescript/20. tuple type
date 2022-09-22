@@ -1,0 +1,50 @@
+array 자료에 붙일 수 있는 tuple type
+
+
+let 멍멍 :(string|boolean)[] = ['dog', true];
+
+// [tuple type]
+// 첫 자료는 무조건 string, 둘째 자료는 무조건 boolean
+// (위치까지 고려한 타입지정 가능)
+let 멍멍2 :[string, boolean] = ['dog', true];
+
+// tuple 안에 옵션표시 가능 (맨뒤에)
+let 멍멍3 :[string, boolean?, number?] = ['dog'];
+
+// rest parameter 타입지정시 tuple 가능
+function 함수(...x :[number, string]){
+    console.log(x);
+}
+// function 함수(a :number, b :string){  // 위랑 같긴함
+//     console.log(a, b);
+// }
+함수(1,'222');
+
+// array 합칠 때 ...spread 연산자 쓰는데 이 때 타입지정은?
+let arr = [1, 2, 3];
+let arr2 :[number, number, ...number[]] = [4, 5, ...arr];
+
+
+예제)
+let 최근 :[string, number, boolean] = ['바나나킥', 1400, true];
+
+let arr3 :[string, number, ...boolean[]] = ['동서녹차', 4000, true, false, true, true, false, true]
+
+type Type = (...x :[string, boolean, ...(number|string)[]]) => void
+let 함수2 :Type = () => {
+
+}
+함수2('a', true, 6, 3, '1', 4);
+
+function 함수3(...param :(string|number)[]) {
+    let result :[string[], number[]] = [[], []];
+    param.forEach((e)=>{
+        if(typeof e == 'string'){
+            result[0].push(e);
+        } else {
+            result[1].push(e);
+        }
+    })
+    return result;
+}
+console.log(함수3('b', 5, 6, 8, 'a'))
