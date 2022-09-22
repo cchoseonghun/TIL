@@ -1,0 +1,24 @@
+전통방식은 onclick=""
+Vue방식은 v-on:click=""
+v-on: 대신 @ 써도됨
+@click=""
+
+신고수 -> 데이터로 보관
+<button @click="신고수++">허위매물신고</button> <span>신고수 : {{ 신고수 }}</span>
+
+(참고)
+click 뿐만 아니라 
+여러가지 이벤트 사용가능
+ex) 
+@mouseover 등등
+
+Vue에서 함수 만들고 싶으면
+methods : {} 안에 만들기
+Vue에서 함수 만들 때 주의사항
+- 함수 안에서 데이터 쓸 땐 this.데이터명
+ex)
+methods : {
+    increase(){
+      this.신고수 += 1;
+    }
+  }, 
