@@ -1,0 +1,48 @@
+class User {
+    public name = 'kim';
+    constructor(a){
+        this.name = a;
+    }
+    public 함수(){
+
+    }
+}
+
+// class에서 쓰는 public 키워드
+// - public 붙으면 모든 자식들이 이용가능
+let 유저1 = new User('park');
+유저1.name = '안뇽';  
+
+class User2 {
+    name :string
+    private familyName :string = 'kim';
+    constructor(a){
+        this.name = a + this.familyName;
+    }
+    이름변경함수(){
+        this.familyName = 'park';
+    }
+}
+// private 붙으면 class 안에서만 수정, 이용가능
+let 유저2 = new User2('민수');
+// 유저2.name = '안뇽';  //에러
+// 유저2.familyName = 'park' // 얘처럼 실수로 familyName 다른거로 변경하면 큰일
+
+// private은 수정불가가 아님
+// class{} 안에서만 수정, 사용가능
+
+// class 밖에서 수정가능하게 하려면??
+// = 자식들이 familyName을 바꾸고 싶으면?
+// 1. class 안에 familyName 변경 함수 제작
+console.log(유저2);
+유저2.이름변경함수();
+console.log(유저2);
+
+// public 키워드 쓰면 this.어쩌구 생략가능
+class Person {
+    constructor(public name){  // 이 자리에 들어온 파라미터는 자식의 name 속성에 기입해주세요
+
+    }
+}
+let 자식 = new Person('kim');
+console.log(자식)
