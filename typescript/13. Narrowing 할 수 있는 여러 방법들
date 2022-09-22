@@ -1,0 +1,53 @@
+// null & undefined 타입체크하는 경우
+
+// 1. && 연산자로 null & undefined 타입체크하기
+// function 함수(a? :string){
+function 함수(a :string | undefined){
+    if(a && typeof a === 'string'){ 
+        // case1. a가 undefined면 undefined가 남아서 false
+        // case2. a가 string 타입이면 true
+    }
+}
+
+// 2. in 키워드로 object narrowing 가능
+type Fish = {swim :string}
+type Bird = {fly :string}  // 서로 속성명이 다름
+// 속성명 in 오브젝트자료
+function 함수2(animal :Fish | Bird){
+    if( 'swim' in animal ){
+        animal.swim
+    }
+    if( 'fly' in animal){
+        animal.fly
+    }
+}
+
+// 3. instanceof 연산자로 object narrowing 가능
+// 오브젝트 instanceof 부모class
+let 날짜 = new Date();
+if(날짜 instanceof Date){
+
+}
+
+// 4. object 타입마다 literal type 만들어두면 narrowing 편리해짐
+type Car = {
+    wheel : '4개', 
+    color : string
+}
+type Bike = {
+    wheel : '2개', 
+    color : string
+}
+// object 타입이 둘다 비슷하게 생겼는데 narrowing 어떻게?
+function 함수3(x :Car | Bike){
+    // 속성명 in 오브젝트자료 (불가능)
+    // 오브젝트 instanceof 부모class (불가능)
+    // 애초에 비슷한 object 타입 안만들면됨
+    // 비슷한 object 타입일 경우 literal type 강제로 만들어두면 나중에 도움됨. 위에선 wheel
+    if(x.wheel === '4개'){
+        console.log('x는 Car타입이에요');
+    }
+    // 비슷한 object 타입이 많다 그러면 literal type 넣어보셈 위처럼
+}
+
+// (요약) 논리적으로 이 타입인지 특정 지을 수 있으면 narrowing으로 인정해줌
