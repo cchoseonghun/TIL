@@ -1,0 +1,52 @@
+// rest parameter
+function 함수1(...a :number[]){
+    console.log(a);
+}
+
+// spread operator
+let arr = [1, 2, 3];
+let arr2 = [4, 5];
+let arr3 = [...arr, ...arr2];
+
+// rest parameter와 spread operator는 다른거임!
+
+
+// destructuring
+let [a, b] = ['45', 123];
+
+let { student, age } = { student : true, age : 20 }
+// let { student : student, age : age } = { student : true, age : 20 }
+// 같은 뜻
+
+// 함수에 destructuring 문법 쓰는 법
+let obj = { student : true, age : 20 };
+
+function 함수({student, age} :{student :boolean, age :number}) :void {
+    console.log(student, age);
+}
+함수(obj);
+
+
+function 최댓값(...param :number[]) :number{
+    let large = param.reduce((acc, cur, i)=>{
+        if(acc <= cur){
+            return cur;
+        } else {
+            return acc;
+        }
+    }, 0)
+    return large;
+}
+console.log(최댓값(6, 3, 2, 7));
+
+
+function test({user, comment, admin} :{user :string, comment :number[], admin :boolean}) :void {
+    console.log(user, comment, admin);
+}
+test( { user : 'kim', comment : [3,5,4], admin : false } );
+
+
+function test2([a, b, c] :(string|number|boolean)[]) :void{
+    console.log(a, b, c)
+}
+test2( [40, 'wine', false] );
