@@ -1,0 +1,56 @@
+이미지파일은 보통 src/assets/ 안에 넣는다.
+
+<img> 넣는 법
+- 절대경로는 그냥 넣으셈
+
+
+동적인 UI 만드는 법
+0. HTML CSS로 디자인해두기 (기본)
+1. UI의 현재 상태를 데이터로 저장해둠
+2. 데이터에 따라 UI가 어떻게 보일지 작성
+
+
+v-if="조건식"
+조건식이 참일 때만 HTML 보여줌
+
+데이터에
+      모달창열렸니 : false, 
+모달창 스위치 만들기
+    <h4 @click="모달창열렸니=true">{{ products[i] }}</h4>
+
+지금까지 데이터 저장공간이라 대강 불렀던 얘네는
+state라고 부름
+
+
+
+
+모달창 만들기
+// HTML
+<div class="black-bg" v-if="모달창열렸니" >
+    <div class="white-bg">
+      <h4>상세페이지임</h4>
+      <p>상세페이지 내용임</p>
+      <button @click="모달창열렸니=false">닫기</button>
+    </div>
+  </div>
+  
+// CSS
+  body{
+  margin: 0;
+}
+div{
+  box-sizing: border-box;
+}
+.black-bg{
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%; height: 100%;
+  position: fixed; 
+  padding: 20px;
+}
+.white-bg{
+  background: white;
+  width: 100%; 
+  border-radius: 8px;
+  padding: 20px;
+}
+  
