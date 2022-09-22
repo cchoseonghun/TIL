@@ -1,0 +1,112 @@
+// class의 복사
+class User {
+    x = 10;
+}
+class NewUser extends User {
+    // class 복사하고 싶으면 extends 붙이자
+}
+let 사람 = new NewUser();
+console.log(사람)
+
+
+// protected, private
+class User {
+    protected x = 10;
+}
+class NewUser extends User {
+    doThis(){
+        this.x = 20;
+    }
+}
+let 사람 = new NewUser();
+console.log(사람)
+// protected 붙이면 현재 class{} 안에서 + extends 된 class{} 안에서 사용가능
+// protected: extends된 class는 사용가능, 자식들 사용불가능
+// private: extends된 class는 사용불가능, 자식들 사용불가능
+
+
+// static
+class User {
+    static x = 10;
+    y = 20;
+}
+let 자식 = new User();
+// static 키워드 붙이면 부모 class에 직접 부여됨 (+ 자식에게 안물려줌)
+// class의 주요 기능인 object 복사 기능을 막는 기능
+// console.log(자식.x) // 에러
+console.log(자식.y);
+console.log(User.x);
+
+
+// private / protected / public + static 가능
+
+class User {
+    static skill = 'js';
+    // intro = this.skill + ' 전문가입니다'
+    intro = User.skill + ' 전문가입니다'
+}
+let 철수 = new User();
+console.log(철수)
+
+User.skill = 'ts'
+
+let 철수2 = new User();
+console.log(철수2)
+// 숨기고 싶으면 protected, private 이게 낫지
+
+
+
+
+class User {
+  private static x = 10;
+  public static y = 20;
+  protected z = 30;
+}
+1. 필드값은 원래는 모든 User의 자식들에게 물려주는 속성이지만 
+  x와 y에는 static 키워드가 붙었기 때문에 User.x 이런 식으로만 접근해서 쓸 수 있습니다.
+  User의 자식들은 x와 y를 쓸 수 없습니다.
+2. private static x는 class 내부에서만 수정가능합니다. 
+3. public static y는 class 내부 외부 상관없이 수정가능합니다. public 키워드 지워도 똑같이 동작할 듯 
+4. protected z는 private 키워드와 유사하게 class 내부에서만 사용이 가능한데 
+  약간 범위가 넓어서 extends로 복사한 class 내부에서도 사용할 수 있습니다. 
+
+
+class User {
+    private static x = 10;
+    public static y = 20;
+
+    static addOne(a){
+        User.x += a;
+    }
+    static printX(){
+        console.log(User.x);
+    }
+}
+User.addOne(3)
+User.addOne(4)
+User.printX();
+
+
+
+
+class Square {  
+  constructor (public width :number, public height :number, public color :string){
+  }
+  draw(){
+    let a = Math.random();
+    let square = `<div style="position:relative; 
+      top:${a * 400}px; 
+      left:${a * 400}px; 
+      width:${this.width}px; 
+      height : ${this.height}px; 
+      background:${this.color}"></div>`;
+    document.body.insertAdjacentHTML( 'beforeend', square );
+  }
+}
+
+
+let 네모 = new Square(30, 30, 'red');
+네모.draw()
+네모.draw()
+네모.draw()
+네모.draw()
