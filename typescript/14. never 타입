@@ -1,0 +1,7 @@
+// function return 값에 붙일 수 있는 never type
+// 조건1. return 값이 없어야함
+// 조건2. endpoint가 없어야함 (함수가 끝나지 않아야함)
+// 평소에는 걍 void 쓰셈. 코드 이상하게 짜면 나오는 타입임
+function 함수() :never {
+    throw new Error()
+}
