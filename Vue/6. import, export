@@ -1,0 +1,17 @@
+import / export 문법 쓰는 법
+1. export default 변수명
+2. import 변수명 from 그파일경로
+
+export default [{
+    id : 0,
+
+와 같이 걍 바로 export default 박아도 됨
+
+import data from './assets/oneroom';
+로 불러와서 state에
+      원룸들 : data, 
+이렇게 넣어서 사용
+
+    <img :src="원룸들[i].image" class="room-img">
+HTML 태그안의 속성 데이터바인딩은 :src~ 처럼 : 붙여서 사용
+HTML 태그안의 내용 데이터바인딩은 {{어쩌구}}
