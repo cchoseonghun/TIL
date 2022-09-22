@@ -1,0 +1,37 @@
+// a.ts
+export let 이름 = 'kim';
+export let 나이 = 20;
+export type Name = string | number;
+
+// index.ts
+import {Name, 나이} from './a'
+let 변수 :Name = 'Park';
+console.log(변수)
+
+
+
+// import, export 가 없던 옛날 ts에선 어떻게?
+
+// a.ts
+namespace 네임스페이스 {
+// module 네임스페이스{ // module도 namespace와 같은 소리임
+    // TypeScript 타입변수 숨기기 문법인 namespace
+    // object와 다르게 생겼는데 아무튼 object 안에 숨긴 것임
+    export type Name = string | number;
+}
+
+// index.ts
+///<reference path="./a.ts" />
+let 변수 :네임스페이스.Name = 'Park';
+console.log(변수)
+
+
+
+namespace kr {
+    export type Dog = string;
+}
+namespace jp {
+    export interface Dog { name : string };
+}
+let dog1 :kr.Dog = 'bark';
+let dog2 :jp.Dog = { name : 'paw' }
