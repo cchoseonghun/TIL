@@ -48,3 +48,35 @@ let a = 함수<string[]>(['100']);
 1. 함수에 타입파라미터 넣을 수 있음
 2. extends 키워드로 넣을 수 있는 타입 제한가능
 3. class에도 타입파라미터 넣을 수 있음
+
+
+
+예제)
+function 함수<T extends string | string[]>(a :T){
+    console.log(a.length);
+}
+
+함수<string>('hello');
+함수<string[]>(['kim', 'park']);
+
+
+interface Animal {
+    name : string;
+    age : number 
+}
+let data = '{"name" : "dog", "age" : 1 }';
+
+function 함수2<T>(x :string) :T{
+    return JSON.parse(x);
+}
+let result = 함수2<Animal>(data);
+
+
+class Person<T> {
+    name;
+    constructor(a :T){
+        this.name = a;
+    }
+}
+let a = new Person<number>('어쩌구');
+a.name //any 타입이 되었넹 
