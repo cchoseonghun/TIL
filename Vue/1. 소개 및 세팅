@@ -1,0 +1,21 @@
+Vue 쓰는 이유
+1. 쉽다
+2. 코드짤 때 right way 가 있음
+3. HTML 렌더링 빠름
+4. 업데이트 잘됨
+
+npm install -g @vue/cli
+
+Extensions 설치 3가지
+vetur
+html css support
+vue 3 snippets
+
+프로젝트생성
+vue create {프로젝트명}
+
+<template> 안에는 HTML 짜고
+<script> 안에는 JS 짜고
+
+npm run serve // 미리보기 띄우기
+왼쪽 하단 NPM SCRIPTS 에서 serve 항목에 재생 버튼 눌러도 됨
