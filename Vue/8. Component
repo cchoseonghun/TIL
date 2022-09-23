@@ -1,0 +1,28 @@
+Component
+ - 긴 HTML을 한 단어로 줄일 수 있는 문법
+
+1. ~.vue 로 vue파일 만들기
+2. 축약할 HTML 넣기
+3. name 넣기
+
+vue파일 기본 형태는
+1. template
+2. script
+3. style
+
+< 열고 엔터 치면 default.vue 자동완성됨
+
+만들어서 축약해둔 컴포넌트 쓰는 법
+1. vue파일 import 해오고
+	import Discount from './Discount.vue';
+2. components: {}에 등록하고
+	components: {
+    	  // Discount : Discount,   // 오브젝트에서 항목이 똑같으면 합쳐서 한글자로 쓸 수 있다. 아래처럼
+	  Discount, 
+  	}
+3. <쓰셈/>
+
+근데 내가 쓰는 버전부터 나는 에러인지
+should always be multi-word ~ 하는 에러가 나온다.
+좀 찾아보니 Discount가 아닌 두 단어의 조합으로 만들어야 에러가 안난다고 한다.
+MyDiscount로 만들어서 해결했음
