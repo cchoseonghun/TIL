@@ -26,3 +26,10 @@ vue파일 기본 형태는
 should always be multi-word ~ 하는 에러가 나온다.
 좀 찾아보니 Discount가 아닌 두 단어의 조합으로 만들어야 에러가 안난다고 한다.
 MyDiscount로 만들어서 해결했음
+
+에러 해결하는 다른 방법으로는
+package.json 파일에 
+"rules": {
+   "vue/multi-word-component-names": "off"
+} 
+추가하고 미리보기 껐다키면 해결
