@@ -1,0 +1,41 @@
+컴포넌트의 lifecycle
+
+<컴포넌트>는 웹페이지에 표시되기까지 일련의 step을 거침
+그 step을 라이프사이클이라함
+
+1. create 단계 
+  - 데이터만 존재하는 단계
+2. mount 단계 
+  - <template> 사이에 있던걸 실제 HTML로 바꿔줌
+3. 컴포넌트 생성 
+  - 그 다음에 index.html에 장착함
+4. update 단계
+ - data가 변하면 HTML이 재렌더링 된다고 했음
+ - 실은 <컴포넌트>가 재렌더링됨 -> 이걸 업데이트라고함
+5. unmount 단계
+ - 컴포넌트 삭제
+
+Lifecycle Hook을 걸어서 위 단계들 중간에 원하는 코드를 실행가능
+
+beforeCreate()
+created()
+beforeMount()	// mount 되기전 실행
+mounted()	// mount 되고나서 실행
+beforeUpdate()
+updated()
+beforeUnmount()
+unmounted() 
+등등
+
+ex)
+mounted(){
+  setTimeout(()=>{
+    this.showDiscount = false;
+  }, 2000);
+},
+
+
+서버에서 데이터 가져올 때도 lifecycle hook 안에 코드 짬
+ajax 요청은 보통 created() or mounted() 둘중에 선택
+
+update는 watcher와 비슷하게 사용 가능
