@@ -1,0 +1,38 @@
+@click=""  // 클릭할 때마다 ~ 실행 << 얘처럼
+
+<input> 태그에 쓸 수 있는 기능 2가지
+@input="입력할 때마다 ~ 실행"
+@change="입력하고 커서 다른데 찍으면 ~ 실행"
+
+
+유저가 <input>에 입력한 값을 데이터로 저장하는법
+
+1. 
+        <input @input="$event.target.value">
+-> 이벤트리스너에서 (e)로 e.target.value 쓰던거랑 똑같음
+
+        <input @input="month = $event.target.value">
+이런 형태로 만든 후 
+data(){
+  return {
+    month : 1  // 얘 갖다 쓰면됨
+
+2. 
+v-model="데이터이름"
+<input @input="month = $event.target.value">  // 이거의 축약버전
+<input v-model="month">
+
+input태그 뿐만 아니라
+<textarea v-model="month"></textarea>
+<select v-model="month">
+  <option>1</option>
+  <option>2</option>
+  <option>3</option>
+</select>
+
+
+state에 초기값 설정하는건 중요. 타입을 따라가기 때문
+but, 사용자가 <input>에 입력한 것은 전부 문자자료형
+
+<input v-model.number="month">
+와 같은 형태로 써서 숫자로 변환하는 방법도 있다.
