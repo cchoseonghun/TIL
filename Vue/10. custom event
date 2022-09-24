@@ -1,0 +1,40 @@
+자식이 부모 데이터 바꾸고 싶으면 custom event
+
+props로 보낸 데이터는 Read-only임. 수정금지
+
+<Card @click 이렇게 바로 이벤트핸들러를 박으면 되지않냐?
+-> 이벤트버블링 발생함
+
+
+해결법
+$어쩌구는 Vue만의 특별한 변수
+
+
+custom event 사용법
+1. 자식은
+  $emit('작명', 데이터)"  // $emit('작명')" 보통 이렇게 씀
+2. 부모는 메시지 받으려면
+  @작명한거=""
+ex)
+<h4 @click="$emit('openModal')">{{ 원룸.title }}</h4>
+<Card @openModal="modal_detail(i)" v-for="(원룸, i) in 원룸들" :key="i" :원룸="원룸" :i="i" />
+
+<button @click="$emit('closeModal')">닫기</button>
+<MyModal @closeModal="모달창열렸니=false" :원룸들="원룸들" :selected_detail="selected_detail" :모달창열렸니="모달창열렸니"/>
+
+
+데이터를 보낼 때
+$emit('작명', 데이터)"
+자식이 보낸 데이터는 $event 변수에 담겨있음
+ex)
+<h4 @click="$emit('openModal', 원룸.id)">{{ 원룸.title }}</h4>
+<Card @openModal="modal_detail($event)" v-for="(원룸, i) in 원룸들" :key="i" :원룸="원룸" :i="i" />
+
+
+$emit()을 methods : {} 함수 안에서 하고 싶으면
+this.$emit() // 함수명은 영어로
+
+props든 
+data든 
+$변수든
+밑에서 쓸 땐 this 붙이기
