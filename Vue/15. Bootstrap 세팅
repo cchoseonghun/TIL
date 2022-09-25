@@ -1,0 +1,4 @@
+1. Bootstrap 설치
+2. main.js에 아래 두줄 추가
+import 'bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css'
