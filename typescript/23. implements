@@ -1,0 +1,42 @@
+interface는 object 타입 지정할 때 쓰지만
+class 타입을 확인하고 싶을때도 사용 가능
+but, implements 키워드가 필요하다
+
+ex)
+class Car {
+  model : string;
+  price : number = 1000;
+  constructor(a :string){
+    this.model = a
+  }
+}
+
+위처럼 Car 라는 오브젝트가 있을 때
+
+interface CarType {
+  model : string,
+  price : number
+}
+
+CarType 속성을 가지고 있는지 확인하려면
+	class Car implements CarType {
+와 같은 형태로 사용
+
+
+
+implements는 타입지정문법이 아니다.
+interface에 들어있는 속성을 가지고 있는지 확인만
+class에다가 타입을 할당하고 변형하는 키워드 xx
+
+ex)
+interface CarType {
+  model : string,
+  tax : (price :number) => number;
+}
+
+class Car implements CarType {
+  model;   ///any 타입됨
+  tax (a){   ///a 파라미터는 any 타입됨 
+    return a * 0.1
+  }
+}
