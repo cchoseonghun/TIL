@@ -1,0 +1,58 @@
+.js에 있는 변수를 .ts에서 이용하고 싶다
+- 일반 html css js 개발시 그냥 <script src="">
+
+ex)
+index.html
+    <script src="data.js"></script>
+    <script src="index.js"></script>
+
+- import 해온게 아니라 일단 에러남
+
+
+declare let a :number;  // 어딘가에 분명 변수 a있으니 에러내지마라 라는 뜻
+console.log(a+1);
+
+
+일반 js파일 등에 있던 변수 쓸 때 에러나지 않도록 재정의할 때 씀
+
+
+변수 재정의가 가능한 declare 문법
+declare로 정의한 내용은 js로 변환되지 않음
+
+특히 .js로 만든 라이브러리 사용할 때 ts에서 에러 나는데
+변수, 함수 같은걸 declare로 재정의하기도 함
+ex) jQuery
+
+
+
+ts파일 -> ts파일로 변수를 가져다 쓰고 싶으면
+import export 쓰는게 당연
+//data.ts
+  export var a = 10;
+// index.ts
+  import {a} from './data'
+  console.log(a + 1);
+
+
+ts 이상한 특징
+- 모든 ts파일은 ambient module (글로벌 모듈)
+- let name = 123 
+- name 변수를 만들면 에러가 나는데 타입스크립트 기본 파일에 
+- let name이 이미 있기 때문. 위의 ambient module 때문에 생기는 상황 이해
+
+
+ts파일을 ambient module이 아니라 
+로컬 모듈로 만드는 법
+- import export 둘중 하나라도 있으면 자동으로 로컬 모듈임
+
+ex) 
+export {}  // 달랑 이거만 추가해도 로컬 모듈됨
+
+
+근데 갑자기 글로벌 변수가 만들고 싶을 땐?
+// data.ts
+declare global {
+    type Dog = string;
+}
+// index.ts
+    let b :Dog = 'kim';
