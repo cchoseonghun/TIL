@@ -1,0 +1,97 @@
+index signature 쓰면 object 타입지정 한번에 가능
+
+Object 마다 type or interface 만들어서 타입지정하기 귀찮음
+index signature 쓰면 모든 속성은 string이라고 타입지정 가능
+
+ex)
+interface StringOnly {
+    [key :string] : string, 
+}
+
+let user :StringOnly = {
+    name: 'kim', 
+    age: '20', 
+    location: 'seoul'
+}
+
+
+but, 
+interface StringOnly {
+    age : number, 
+    [key :string] : string, 
+}
+
+와 같은 형태는 금지시키고 있다. 
+
+interface StringOnly {
+    [key :string] : string | number, 
+}
+
+or
+
+interface StringOnly {
+    age : '20', 
+    [key :string] : string, 
+}
+
+오류가 생기지 않는 한에서 이렇게 사용은 가능
+
+
+속성 이름이 숫자인 경우에도 index signature 사용가능
+
+
+
+
+// recursive
+interface MyType {
+    'font-size' : MyType 
+    }
+}
+let css :MyType = {
+    'font-size' : {
+        'font-size' : {
+            'font-size' : 14
+        }
+    }
+}
+
+위와 같은 Objecct와 type 이 있다고 할 때 
+
+interface MyType {
+    'font-size' : MyType | number;
+}
+
+이렇게 줄여서 사용 가능
+
+
+
+
+사용예제)
+interface objType {
+    [key :string] :string | number, 
+}
+
+let obj :objType = {
+    model : 'k5',
+    brand : 'kia',
+    price : 6000,
+    year : 2030,
+    date : '6월',
+    percent : '5%',
+    dealer : '김차장',
+}
+
+interface obj2Type {
+    'font-size' :number, 
+    [key :string] :number | obj2Type
+}
+
+let obj2 :obj2Type = {
+    'font-size' : 10,
+    'secondary' : {
+      'font-size' : 12,
+      'third' : {
+        'font-size' : 14
+      }
+    }
+  }
