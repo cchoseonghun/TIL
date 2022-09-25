@@ -1,0 +1,50 @@
+조건부로 타입을 생성하거나
+한꺼번에 타입을 a에서 b로 바꾸는것도 가능
+
+
+// keyof 키워드
+
+interface Person {
+    age : number, 
+    name : string, 
+}
+type PersonKeys = keyof Person  // 'age' | 'name'
+
+let a :PersonKeys = 'name';
+// let b :PersonKeys = 'name1';  // PersonKeys는 literal type이라 에러
+
+
+interface Person {
+    [key :string] :number
+}
+type PersonKeys = keyof Person  // string | number
+// 숫자를 키 값에 넣어도 문자로 치환해주기 때문에 위와 같은 결과가 나옴
+
+
+// mapping - 타입 변환시키기
+
+type Car = {
+    color :boolean, 
+    model :boolean, 
+    price :boolean | number, 
+}
+
+type TypeChanger<MyType> = {
+    [key in keyof MyType] :string
+}
+
+type 새로운타입 = TypeChanger<Car>
+
+
+
+사용예제)
+type Bus = {
+    color : string,
+    model : boolean,
+    price : number
+}
+type TypeChanger<MyType, T> = {
+    [key in keyof MyType] :T
+}
+type Bus2 = TypeChanger<Bus, string|number>
+
