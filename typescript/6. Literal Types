@@ -12,22 +12,37 @@ function 함수(a :'hello') :1 | 0 {
 
 
 // Literal type은 const 변수와 유사하게 사용가능
+오히려 const 변수는 하나밖에 저장 못하지만
+Literal type 은 두개 이상을 const에 저장하는거나 마찬가지로 사용 가능
+ex)
+let 접니다 : '대머리' | '솔로';
+
+
 
 var 자료 = {
     name : 'kim'
-} as const  // 이 Object는 literal type 지정 알아서 해주셈
-
+}
 function 내함수(a :'kim'){
     // 'kim이라는 자료만 들어올 수 있습니다' X
     // 'kim이라는 타입만 들어올 수 있습니다' O
     // 자료.name의 타입은 'kim'이 아닌 'string' 임
 }
+내함수(자료.name)  // 해당 상황에서 자료.name의 타입은 'kim'이 아닌 string이라 에러가 나옴
 
-내함수(자료.name)
+
 
 솔루션
 1. Object 만들 때 타입지정 확실히
-2. as 문법으로 타입을 구라치셈
+    var 자료 :{name : 'kim'} = {name : 'kim'}
+    function 내함수(a :'kim'){}
+    내함수(자료.name)
+2. as 문법으로 타입을 구라치셈  // 추천 x
+    var 자료 = {name : 'kim'}
+    function 내함수(a :'kim'){}
+    내함수(자료.name as 'kim')
 3. as const 키워드 쓰는 방법
-3-1. as const => Object value 값을 그대로 타입으로 지정해줌
-3-2. as const => Object 속성들에 모두 readonly 붙여줌
+    var 자료 = {name : 'kim'} as const
+    function 내함수(a :'kim'){}
+    내함수(자료.name)  // 이 Object는 literal type 지정 알아서 해주셈
+3번 효과 1. as const => Object value 값을 그대로 타입으로 지정해줌
+3번 효과 2. as const => Object 속성들에 모두 readonly 붙여줌
