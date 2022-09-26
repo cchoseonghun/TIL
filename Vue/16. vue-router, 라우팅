@@ -1,0 +1,61 @@
+/list로 접속하면 <List> 보여주기
+
+npm install vue-router@4
+하라는데 걍
+npm install vue-router 했음
+
+// 라우터 세팅
+// main.js
+createApp(App).use(라우터만든거).mount('#app')
+적고 이 위에 라우터 설정 해야하는데 
+너무 길어지니 다른 파일에 쓰는게 일반적
+
+// src/router.js
+import { createWebHistory, createRouter } from "vue-router";  // 라이브러리명 적으면 라이브러리 import해서 쓰는 것일 뿐
+// createRouter -> 라우터 생성 도와주는 함수
+const routes = [
+  {
+    path: "/경로",
+    component: import해온 컴포넌트,
+  }
+];
+const router = createRouter({
+  history: createWebHistory(),
+  routes,
+});
+export default router; 
+
+// 아래와 같이 수정해줬음
+
+import { createWebHistory, createRouter } from "vue-router";
+import List from './components/List'
+const routes = [
+  {
+    path: "/list",
+    component: List,
+  }, 
+//   {
+//     path: "/list",
+//     component: List,
+//   }  // 다른 페이지도 만들고 싶으면 이런식으로 반복
+];
+const router = createRouter({
+  history: createWebHistory(),
+  routes,
+});
+export default router; 
+
+
+router.js를 만들었으니 이제 main.js에서 라우터 불러와서 적용
+// main.js
+import router from './router.js'
+createApp(App).use(router).mount('#app')
+
+
+마지막으로 App.vue에서 /list에 대해 보여줄 곳을 
+<router-view>로 표시
+
+
+기존에 쓰던 <List />대신 쓰면 된다.
+    <router-view v-for="(a, index) in 블로그글" :key="index" :blog="a"></router-view>
+    <!-- <List v-for="(a, index) in 블로그글" :key="index" :blog="a" /> -->
