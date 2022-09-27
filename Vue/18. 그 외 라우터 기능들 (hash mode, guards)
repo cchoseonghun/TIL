@@ -1,0 +1,106 @@
+// hash mode
+
+// router.js - HTML 5 mode
+import { createRouter, createWebHistory } from 'vue-router'
+const router = [];
+const router = createRouter({
+  history: createWebHistory(),
+  routes,
+})
+
+위와 같이 쓰면 Vue router에 요청하기전에
+서버에 요청이 될 수 있다. 서버 관련 세팅이 안되어있다면 에러가 나오니 
+서버 세팅이 안되어있고 Vue router를 쓰고 싶다면
+아래 hash mode를 쓰자
+
+
+// router.js - Hash mode
+import { createRouter, createWebHashHistory } from 'vue-router'
+const router = [];
+const router = createRouter({
+  history: createWebHashHistory(),  // 여기가 달라짐. 위 import도 참고
+  routes,
+})
+
+hash mode를 쓰면 URL에 #이 붙어 codingapple.com/#/~ 
+와 같은 형태가 되는데 이러면 # 뒤에 있는 내용들은 
+절대 서버로 전달되지 않는다. 
+
+따라서 서버가 라우팅을 채가는 일도 방지할 수 있고
+Vue router에게 온전이 라우팅을 맡길 수도 있게됨
+
+
+
+// Navigation guards
+ - 특정 URL로 접속할 때 뭔가 코드를 실행하고 싶을 경우 사용
+ex) 마이페이지 접속할 때 로그인한 사람에게만 보여주고 싶을 경우
+
+const routes = [
+  {
+    path: "/hello",
+    component: HelloWorld,
+    beforeEnter: ()=>{
+      if (로그인했냐 == false) {
+        return '/login'
+      }
+    }
+  }
+];
+
+
+const routes = [
+  {
+    path: "/hello",
+    component: HelloWorld,
+    beforeEnter: (to, from)=>{
+      return to.fullPath
+    }
+  }
+];
+파라미터도 두세개 작명이 가능한데 
+첫째 파라미터(to)는 목적지 페이지, 
+둘째 파라미터(from)는 출발 페이지
+
+얘네는 $route 변수랑 똑같이 이용 가능
+ex)
+to.fullPath  // 전체 경로
+to.param.id  
+
+
+참고로 return false는 라우팅 중단, 
+return이 없다면 원래의 route인 /hello로 잘 이동시켜줌
+
+
+
+// 여러개의 route에 같은 navigation guard를 추가하고 싶으면
+router라는 변수에다가 .beforeEach()쓰자
+내부 함수 사용법은 아까랑 동일
+
+const router = createRouter({ 어쩌구 })
+router.beforeEach((to, from) => {
+  //페이지 변경 전에 실행할 코드
+})
+
+라우팅 전에 뭔가 실행하고 싶으면 
+- beforeEach() or beforeResolve()
+라우팅 하고나서 뭔가 실행하고 싶으면
+- afterEach()
+
+
+
+// Vue 컴포넌트 안에서도 navigation guard 쓸 수 있음
+ - vue 파일 안에서도 페이지 이동 시 뭔가 코드를 실행 가능
+ - created() mounted() 이런거랑 비슷하게 활용 가능하다. 
+
+beforeRouteEnter(){}
+beforeRouteUpdate(){} 
+
+얘네는 lifecycle hook 쓰는 위치에 쓰면 됨
+파라미터는 두개 입력 가능한데 각각 목적지인 to, 출발지인 from을 의미
+-> 특정 페이지로 접속했을 때 ajax 요청하고 그럴 일이 있으면
+저기다가 쓰면 된다. 
+
+
+
+더 자세한건 아래 참고
+https://next.router.vuejs.org/
