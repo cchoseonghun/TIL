@@ -59,3 +59,53 @@ createApp(App).use(router).mount('#app')
 기존에 쓰던 <List />대신 쓰면 된다.
     <router-view v-for="(a, index) in 블로그글" :key="index" :blog="a"></router-view>
     <!-- <List v-for="(a, index) in 블로그글" :key="index" :blog="a" /> -->
+
+
+
+페이지 나누려면
+1. 컴포넌트 만들기
+2. router.js에서 routes에 {} 추가
+3. props 전송은 <router-view>에서 하기
+
+
+다른 페이지로의 이동링크
+<router-link to="경로"></router-link>
+
+<router-link to="/">홈페이지</router-link>
+<router-link to="/list">리스트페이지</router-link>
+
+
+
+
+// 상세페이지 만들기
+
+URL parameter 문법
+  {
+    path: "/detail/:id",  // detail/아무문자
+    component: Detail,
+  }, 
+// 파라미터를 엄격하게 받을 수 있음
+// 소괄호 안에 정규식 입력 가능, * 입력하면 반복
+ex)
+    path: "/detail/:id(\\d+)",  // 숫자만
+
+    path: "/detail/:id/:id/:id/:id",
+=     path: "/detail/:id*",
+
+-> 더 많이 있는데 vue-router 4 참고
+
+// 404 페이지도 아래와 같이 안내할 수 있다.
+    path: "/:anything(.*)",
+
+
+
+
+
+$route.params 하면 파라미터 자리에 기입된거 알려줌
+        <p>{{ 블로그글[$route.params.id].content }}</p>
+
+
+
+
+// router-link 에서 경로에 특정값을 넣고 싶다면 아래와 같이
+<h5><router-link :to="{ path: '/detail/' + index }">{{ blog.title }}</router-link></h5>
