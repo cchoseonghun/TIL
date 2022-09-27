@@ -1,0 +1,54 @@
+npm create 프로젝트명
+npm run serve
+
+
+// 컴포넌트 이름 단어 하나여도 에러 안나는 법
+"rules": {
+   "vue/multi-word-component-names": "off"
+} 
+
+
+// Bootstrap 설치 후 세팅
+// main.js
+import 'bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css'
+
+
+// vue-router
+npm install vue-router@4
+router.js 생성
+// router.js
+import { createRouter, createWebHashHistory } from "vue-router";
+import Home from './components/Home'
+const routes = [
+  {
+    path: "/",
+    component: Home,
+  }
+];
+path: "/:anything(.*)",  // 올바르지 않은 URL 404 페이지 유도
+
+// 라우터 세팅 - hash mode
+const router = createRouter({
+  history: createWebHashHistory(),
+  routes,
+});
+export default router; 
+
+// main.js
+import router from './router.js'
+createApp(App).use(router).mount('#app')
+
+<router-view>를 통해 라우팅 된 페이지 노출
+
+// 라우터 이동 두가지 방법
+1. <router-link to="/">Home</router-link>
+2. <h4 @click="$router.push('/detail/' + i)">{{ blog.title }}</h4>
+
+// URL parameter
+1. path: "/detail/:id",
+2. $route.params.id
+
+// nested routes
+1. children: [ 를 통해 라우팅
+2. <button @click="$router.push($route.params.id+'/comment')">댓글</button>
