@@ -1,0 +1,82 @@
+Nested routes & push 함수
+
+// Nested routes
+숨겨진 컴포넌트를 보여줄 때 (예전 모달창 띄우듯)
+다른 URL로 나누고 싶으면 nested routes 써보자
+
+nested routes 만드는 법
+- children: {} 
+
+  {
+    path: "/detail/:id",
+    component: Detail,
+    children: [
+      {
+        path: "/author",
+        component: Author,
+      }, 
+      {
+        path: "/comment",
+        component: Comment,
+      }, 
+    ]
+  }, 
+// /detail/1/author
+// /detail/2/comment 와 같이 쓸 수 있음
+
+// detail.vue
+         <router-view></router-view>
+쓴 부분에 children: {} 안에 있는 컴포넌트를 보여주게됨
+
+
+
+테스트 해보면 제대로 안되고 콘솔창에 에러를 띄어주는데
+children: [
+      {
+        path: "author",
+        component: Author,
+      }, 
+      {
+        path: "comment",
+        component: Comment,
+      }, 
+]
+이렇게 상대경로로 적어줘야 제대로 작동한다.
+
+
+// $route 
+- 현재 URL에 관련된걸 다 알려주는 변수 (현재경로)
+ex)
+$route.params.id
+$route.fullPath
+
+// $router
+- 페이지 이동관련 기능
+ex)
+$router.go(1), $router.go(-1)
+
+
+
+List -> Detail 로 넘어가는 방법
+            <h5><router-link :to="{ path: '/detail/' + index }">{{ blog.title }}</router-link></h5>
+이렇게 써도 되지만 push() 를 이용해
+            <h5 @click="$router.push('/detail/'+index)">{{ blog.title }}</h5>
+
+
+
+// named views
+- 여러개 컴포넌트 보여줄 때 아래와 같이 사용. 자세한건 검색 ㄱ
+// router.js
+{
+    path: "/list",
+    component: {
+      List : List,  
+      Comment : Comment,  
+    }
+  }, 
+// 사용할 곳
+<router-view> 여러개~
+
+
+
+redirection 도 있음
