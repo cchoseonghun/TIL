@@ -1,0 +1,40 @@
+// props 대신 쓸 수 있는 slot
+
+slot으로 부모 -> 자식 데이터 전송 하는법
+1. 자식은 구멍뚫기
+2. <컴포넌트> 태그 사이에 데이터 넣기
+
+
+slot 여러개 사용하는 법
+1. 
+// 자식
+<slot name="a"></slot>
+<slot name="b"></slot>
+// 부모
+<template v-slot:a>데이터1></template>
+<template v-slot:b>데이터2></template>
+
+
+장점
+1. 간편함
+2. HTML 태그도 포함 가능
+
+단점
+1. 태그 안에 데이터바인딩할 때만 slot 사용가능
+
+
+slot props
+ - slot 사용할 때 부모가 자식 데이터 필요한 경우
+// 자식
+<slot :자식데이터="자식데이터">
+// 부모
+<template v-slot="작명"> 후에 {{ 작명.자식데이터 }}
+
+ex)
+// 자식
+<slot :msg="msg"></slot>
+// 부모
+<template v-slot:default="작명"> <span>{{ 작명.msg }}</span> </template>
+
+
+
