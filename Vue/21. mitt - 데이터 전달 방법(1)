@@ -1,0 +1,39 @@
+// 부모의 부모 컴포넌트로 데이터 전달하기
+
+ - custom event
+상위 컴포넌트로 데이터 전달
+
+ - mitt 라이브러리
+부모의 부모 뿐만 아니라 형제 컴포넌트간에도 데이터 전달 가능
+
+ - mitt 라이브러리 세팅
+import mitt from 'mitt'  // 경로에 ./ 없으면 라이브러리 import 하는거임
+let emitter = mitt();
+let app = createApp(App)
+app.config.globalproperties.emitter = emitter;
+// app.config.globalproperties -> 글로벌한 변수보관함
+ 
+// createApp(App).mount('#app')  // 위에서 변수 지정해줬으니
+app.mount('#app')
+
+// 자주 쓰는 라이브러리 여기에 다 등록해버리자!
+ex) 
+app.config.globalProperties.axios = axios;
+
+
+ - mitt로 데이터 전송하는 법
+1. 발사
+this.emitter.emit()
+2. 수신
+this.emitter.on()  // 보통 mounted(){} 에서 받는다
+
+  mounted(){
+    this.emitter.on('작명', (a)=>{  // a -> 이벤트 발사할 때 들어있던 데이터
+      // 작명 이라는 이벤트 발사하면 여기 적힌 코드 실행해주셈
+      console.log(a)
+    })
+  }, 
+
+
+// 많이 쓰진 말자. 관리 힘들어짐
+// 대체품 : Vuex
