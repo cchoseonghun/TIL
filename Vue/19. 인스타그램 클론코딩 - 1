@@ -1,0 +1,82 @@
+:style="~" 집어넣을 때
+object 자료도 가능
+
+ex)
+:style="{ color : 'red }"
+:style="{ fontSize : 'red }"  // -는 오브젝트 이름에 들어갈 수 없으므로
+// 백틱 기호 활용
+:style="{ backgroundImage : `url(${post.userImage})` }"
+// 아니면 아래처럼도 사용 가능
+:style="`background-image : url(${img_url})`"
+
+
+// ajax 요청
+1. axios 라이브러리  
+2. 기본 fetch 함수  
+// fetch 함수가 비교적 최신 기술이기 때문에 브라우저 호환성 문제로
+// 보통은 axios 라이브러리를 쓴다
+
+npm install axios
+
+import axios from 'axios'
+axios.get()
+axios.post()
+
+more(){
+      axios.get('https://codingapple1.github.io/vue/more0.json')
+      .then((result)=>{
+        // 요청성공시 실행할 코드
+      })
+    }
+
+// axios 사용법 몇개 더
+post 요청은 axios.post()
+성공시 실행할 코드는 .then()
+실패시 실행할 코드는 .catch()
+
+
+// 탭 기능data(){
+    return {
+      step: 0, 
+    }
+  }, 
+  <div v-if="step == 0">내용0</div>
+  <div v-if="step == 1">내용1</div>
+  <div v-if="step == 2">내용2</div>
+  <button @click="step = 0">버튼0</button>
+  <button @click="step = 1">버튼1</button>
+  <button @click="step = 2">버튼2</button>
+간단하게 구현 가능
+
+
+Vue3 버전부턴 v-if와 v-for 한 곳에 못쓰니 참고
+
+
+// 이미지 다루기
+1. FileReader()
+ - 파일을 글자로 변환해줌
+2. URL.createObjectURL()  // 이게 조금 더 가벼움
+ - 이미지의 가상 URL을 생성해줌
+ex)
+<input @change="upload" type="file" id="file" class="inputfile" />
+upload(e){
+    let 파일 = e.target.files;
+    let url = URL.createObjectURL(파일[0]);  
+    this.step = 1;
+}
+
+// BLOB (Binary Large Object)
+ - binary 데이터를 다룰 때 BLOB이라는 object에 담아서 다룸
+// 한번에 여러개?
+<input @change="upload" multiple type="file" id="file" class="inputfile" />
+ - 위처럼 multiple이 들어가야 한번에 여러개 선택 가능
+// 이미지만?
+accept="image/*"  
+ - 이미지만 보여주세요 라는 뜻. 이미지만 받겠다는 제한을 두는건 아님
+ - 자바스크립트로 확장자 검사 가능. ex) 파일[0].type
+
+
+
+// CSSgram
+ - 인스타그램 필터기능 
+ - <img class="인스타필터명">
