@@ -1,0 +1,28 @@
+<button @click="$router.push('./comment')">댓글</button>
+or
+<button @click="$router.push($route.fullPath + '/comment')">댓글</button>
+
+
+
+http://localhost:8080/#/detail/0/comment
+
+위 경로로 이동을 시키려니 화면에서 다시 버튼을 눌렀을 때
+
+http://localhost:8080/#/detail/0/comment/comment
+or
+http://localhost:8080/#/detail/0/0/comment
+
+이런식으로 이동하게 되는 현상이 있었다.
+
+
+
+해결방법)
+클릭했을 때 현재경로에 comment가 포함되어있지 않으면 이동하게끔 변경
+단순하지만 위 버튼상에서의 저 경로를 어떻게 해결할 방법이 없을까하고 어렵게 고민을 계속 했던 문제같다.
+
+<button @click="openComment">댓글</button>
+openComment(){
+    if(this.$route.fullPath.indexOf('comment') == -1) {
+        this.$router.push(this.$route.fullPath + '/comment');
+    }
+}
