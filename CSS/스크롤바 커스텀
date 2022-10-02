@@ -1,0 +1,15 @@
+.class -> 스크롤바 커스텀할 요소의 클래스
+
+.class::-webkit-scrollbar {  // 먼저 지정해줘야 밑에 세부 속성들이 적용이 됨. 
+  height: 5px;
+}
+.class::-webkit-scrollbar-thub {  // 위에서 높이만 지정해줬을 때 안보이게 되므로 색깔 지정
+  background: #888;
+  border-radius: 5px;
+}
+.class::-webkit-scrollbar-track {  // 스크롤바 배경색
+  background: #f1f1f1;
+}
+.class::-webkit-scrollbar-thub:hover {  // hover
+  background: #555;
+}
