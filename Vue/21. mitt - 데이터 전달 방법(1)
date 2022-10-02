@@ -6,7 +6,10 @@
  - mitt 라이브러리
 부모의 부모 뿐만 아니라 형제 컴포넌트간에도 데이터 전달 가능
 
+npm install mitt
+
  - mitt 라이브러리 세팅
+// main.js
 import mitt from 'mitt'  // 경로에 ./ 없으면 라이브러리 import 하는거임
 let emitter = mitt();
 let app = createApp(App)
