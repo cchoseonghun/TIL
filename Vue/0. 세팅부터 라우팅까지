@@ -1,4 +1,4 @@
-npm create 프로젝트명
+vue create 프로젝트명
 npm run serve
 
 
