@@ -1,0 +1,96 @@
+Git 2022
+
+npm run build
+
+react git clone
+
+git clone {git-repo}
+cd {repo-name}
+npm install // 이걸 해줘야 package-json module 이 깔림
+npm start
+
+
+
+git config —global user.email ‘이메일’
+git config —global user.name ‘이름'
+
+git init
+git remote add origin {주소}
+git add . (or git add *)
+git status  // add 내역 확인
+git restore —stated 파일명
+git commit -m ‘설명’  
+git log -p // commit 히스토리 확인. -p (—patch) 를 붙이면 각 커밋의 diff 결과를 보여줌
+git log —all —oneline
+git log —all —oneline —graph
+git push origin master
+
+
+git remote 바꾸기
+git remote set-url origin {주소}
+
+git remote 제거
+git remote rm origin 
+
+August 13, 2021 부터 이메일/비밀번호 인증 대신 개인 엑세스 토큰으로만 
+인증이 되어 clone 및 push 를 할 수 있게 변경됐다고 한다. 
+
+github -> Settings -> Developer settins -> Personal access tokens
+-> Generate new token
+
+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
+
+
+key chain -> github 찾아서 로그인 항목 삭제
+
+걍 푸쉬할 때 username 적고 비번에 위 토큰 입력하면 됨
+
+
+
+
+react, nodejs 둘 다 git clone 해온다음 npm install 하면 필요한 파일 다 다운로드된다. 
+
+main
+develop
+feature
+release
+hotfix
+
+기본적으로 develop 브랜치를 기준으로
+feature/guild, feature/friend 처럼 기능별로 feature 브랜치를 만들어 개발 후 
+동작 확인 후 develop 에 merge 하여 합친다. 
+이 develop 브랜치는 release 브랜치로 간 후 여러 테스트를 통해 main 브랜치로 합쳐서 마무리하게된다. 
+보통은 release 에서 main 으로 merge 할 때 develop 에도 merge 한다. (최신화)
+
+git branch // 브랜치 목록 확인
+git branch 작명 // 작명으로 브랜치 생성
+git checkout 작명 // 작명으로 브랜치 변경
+
+git checkout -b 작명 // 작명으로 브랜치 생성하면서 체크아웃
+
+git branch // 로컬 브랜치 목록 조회
+git branch -r // 원격 브랜치 목록 조회
+git branch -a // 모든 브랜치 목록 조회
+
+
+git clone 주소 폴더명
+
+
+
+branch 삭제 관련
+https://velog.io/@chlqhdtn98/깃허브-원격-저장소-브랜치-삭제하기-로컬-사본-정리
+
+git branch -r (브랜치목록 원격)
+git branch -a (브랜치목록 전체)
+
+git pull —-all
+git fetch —-all —-prune (원격까지 최신화)
+git branch -d 브랜치이름 (-d 하면 삭제임)
+
+
+git pull 덮어쓰기 관련
+https://taewooblog.tistory.com/entry/git-pull-%EB%8D%AE%EC%96%B4%EC%93%B0%EA%B8%B0
+
+
+
+
