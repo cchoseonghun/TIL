@@ -26,4 +26,4 @@
 |-|-|
 |서버세팅|Flask, pymongo, dnspython|
 |DB연결 에러해결|certifi|
-|크롤링|bs4|
+|크롤링|requests, bs4|
