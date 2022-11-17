@@ -2,7 +2,8 @@
 =======
 
 > 진행기간: 11/14 ~ 11/18
-   
+
+
 # 진행상황
 * 11/14 - 팀 자기소개 및 S.A 의견 종합, 개인 소개 페이지 작업 시작
   * S.A (Starting Assignments) - [링크](https://4sii.tistory.com/74)   
@@ -71,7 +72,12 @@
 > (완료) route에 <string:name>을 사용하여 URI parameter를 받는 법을 찾아 문제 해결 - [링크](https://stackoverflow.com/questions/24892035/how-can-i-get-the-named-parameters-from-a-url-using-flask)
 
 #### * 디자인에 수정이 필요할듯
-> 전, 후 사진 비교
+> (before)   
+<img src="/sparta/1114~/before1.png" width="60%" title="before1.png"></img>
+<img src="/sparta/1114~/before2.png" width="60%" title="before2.png"></img>   
+> (after)   
+<img src="/sparta/1114~/after1.png" width="60%" title="after1.png"></img>
+<img src="/sparta/1114~/after2.png" width="60%" title="after2.png"></img>   
 
 
 # 문제 해결 & 추가 개선사항
@@ -86,3 +92,7 @@
 
 #### * jQuery 쓰는 팀원의 js파일에서 jQuery를 못찾는 현상
 > js파일을 불러올 때 defer 옵션을 추가해서 해결 - [링크](https://4sii.tistory.com/65)
+
+
+# API
+<img src="/sparta/1114~/API명세.png" width="60%" title="API명세"></img>
