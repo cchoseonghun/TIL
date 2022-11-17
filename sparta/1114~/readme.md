@@ -77,11 +77,11 @@
 
 #### * 디자인에 수정이 필요할듯
 > (before)   
-<img src="/sparta/1114~/before1.png" width="60%" title="before1.png"></img>
-<img src="/sparta/1114~/before2.png" width="60%" title="before2.png"></img>   
+<img src="/sparta/1114~/img/before1.png" width="60%" title="before1.png"></img>
+<img src="/sparta/1114~/img/before2.png" width="60%" title="before2.png"></img>   
 > (after)   
-<img src="/sparta/1114~/after1.png" width="60%" title="after1.png"></img>
-<img src="/sparta/1114~/after2.png" width="60%" title="after2.png"></img>   
+<img src="/sparta/1114~/img/after1.png" width="60%" title="after1.png"></img>
+<img src="/sparta/1114~/img/after2.png" width="60%" title="after2.png"></img>   
 
 
 # 문제 해결 & 추가 개선사항
@@ -99,4 +99,4 @@
 
 
 # API
-<img src="/sparta/1114~/API명세.png" width="60%" title="API명세"></img>
+<img src="/sparta/1114~/img/API명세.png" width="60%" title="API명세"></img>
