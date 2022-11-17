@@ -1,7 +1,9 @@
 미니프로젝트 - 팀 소개 웹페이지
 =======
 
-> 진행기간: 11/14 ~ 11/18
+|진행기간|11/14 ~ 11/18|
+|-|-|
+|서비스목표|사전캠프 기간동안 웹개발 종합반 강의를 들으며 배운걸 바탕으로 얼만큼 활용할 수 있는지 증명하는 페이지를 만드는 것|
 
 
 # 진행상황
@@ -69,7 +71,9 @@
 > (완료) 리뷰 이후 모두 찾아 수정. 더불어 ajax 사용하여 데이터 수정 후 새로고침 해야 보이는 부분 새로고침 없이도 작동되게 변경
 
 #### * 하드코딩 말고 /member/{member_id}/guestbooks 같은 형태를 활용할 것
-> (완료) route에 <string:name>을 사용하여 URI parameter를 받는 법을 찾아 문제 해결 - [링크](https://stackoverflow.com/questions/24892035/how-can-i-get-the-named-parameters-from-a-url-using-flask)
+> (완료) route에 <string:name>을 사용하여 URI parameter를 받는 법을 찾아 문제 해결 - [링크](https://stackoverflow.com/questions/24892035/how-can-i-get-the-named-parameters-from-a-url-using-flask)   
+> 이로인해 200줄이 넘던 app.py의 코드를 4분의 1인 50줄 가량으로 줄일 수 있었다.   
+> 더불어 확장성과 가독성도 추가로 증가하였다.
 
 #### * 디자인에 수정이 필요할듯
 > (before)   
