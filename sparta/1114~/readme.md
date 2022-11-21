@@ -101,4 +101,4 @@
 
 
 # API
-<img src="/sparta/1114~/img/API명세.png" width="60%" title="API명세"></img>
+<img src="/sparta/1114~/img/API명세2.png" width="60%" title="API명세"></img>
