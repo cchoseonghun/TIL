@@ -36,3 +36,24 @@ input = 20
 result = find_prime_list_under_number(input)
 print(result)
 ```
+
+> 여기서 추가로 [링크](https://school.programmers.co.kr/questions/21359)에 따라 코드를 더 좋게 만드는 법을 적용했다.
+```
+input = 20
+def find_prime_list_under_number(number):
+    prime_arr = []
+    for a in range(2, number+1):
+        for i in prime_arr:                 # 1보다 큰 모든 자연수는 소수의 곱으로 이루어져 있기 때문에 소수로 나눠서 0이 되는지를 체크
+            if a % i == 0:
+                break
+            if i > a**(1/2):                # 다만 대상 n의 제곱근보다 작은 모든 소수들로 나누어 떨어지지 않으면 n은 소수이기에
+                prime_arr.append(a)         # 소수 리스트에 넣고
+                break                       # 다음 a로 넘어간다.
+        else:
+            prime_arr.append(a)
+    return prime_arr
+    
+    
+result = find_prime_list_under_number(input)
+print(result)
+```
